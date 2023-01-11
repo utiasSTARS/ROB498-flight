@@ -16,9 +16,10 @@ Within the kit you will find that the power distribution board is already solder
 - RC (Remote control) receiver connection to the pixhawk
 - TeraRanger EVO 60m connection to the pixhawk
 
-Hint: check the datasheet and pinout documents of the avonic parts. The ESC & motor numbering as recongized by the flight controller should be as following figure:
+Hint: check the datasheet and pinout documents of the avonic parts. The ESC & motor numbering and rotation direction as recongized by the flight controller should be as following figure:
 
 <img src = "img/QuadRotorX.8e9a5495.svg" width = "200">
+
 
 ## Firmware/Ground Station Setup
 In real life, the correct avonic connections cannot ensure that they will work properly at all. You also need to setup the firmware of the pixhawk 4. All the settings and parameters can be modified with the ground control station (GCS) software. It is recommended to use QGroundControl, which supports most OS.
@@ -26,17 +27,18 @@ In real life, the correct avonic connections cannot ensure that they will work p
 <img src = "img/QGC.png">
 
 If you go to vehicle setup, you will see a list of items to do, please check in sequence and configure accordingly. The key settings are:
+
 - Airframe (Generic Quadcopter)
 - Sensors (Calibrate everything for the first setup, or whenever you think necessary)
 - Radio (Calibration and confirmation of the remote control)
 - Flight modes (to be explained more in detail in the next section)
-- Motors testing
+- Motors testing (Make sure the rotation direction is correct)
 - Parameters (Much more flexible settings!)
 
 Try not to modify the PID parameters whcih would cause unstability.
 
 ## Radio Setup and Flight Modes
-
+As introduced above, radio setup and flight modes need more work and standard setups. It may also take some time for you to learn how to use the Taranis Remote Control Transmitter (will be referred to as "Taranis" in the following parts) since it provides a lot of flexibilities and is more advanced than the toy-level remote controllers!
 
 
 
