@@ -20,12 +20,25 @@ Hint: check the datasheet and pinout documents of the avonic parts. The ESC & mo
 
 <img src = "img/QuadRotorX.8e9a5495.svg" width = "200">
 
-## Firmware & Remote Control Setup
+## Firmware/Ground Station Setup
 In real life, the correct avonic connections cannot ensure that they will work properly at all. You also need to setup the firmware of the pixhawk 4. All the settings and parameters can be modified with the ground control station (GCS) software. It is recommended to use QGroundControl, which supports most OS.
 
-<img src = "http://qgroundcontrol.com/wp-content/uploads/2017/04/QGC_RGB_Logo_Horizontal_Outlined.png" width = "400">
+<img src = "img/QGC.png">
 
-If you go to vehicle setup, you will see a list of items to do, please check in sequence and configure accordingly. 
+If you go to vehicle setup, you will see a list of items to do, please check in sequence and configure accordingly. The key settings are:
+- Airframe (Generic Quadcopter)
+- Sensors (Calibrate everything for the first setup, or whenever you think necessary)
+- Radio (Calibration and confirmation of the remote control)
+- Flight modes (to be explained more in detail in the next section)
+- Motors testing
+- Parameters (Much more flexible settings!)
+
+Try not to modify the PID parameters whcih would cause unstability.
+
+## Radio Setup and Flight Modes
+
+
+
 
 
  
