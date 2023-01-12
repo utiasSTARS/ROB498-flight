@@ -37,6 +37,7 @@ If you go to vehicle setup after the firmware update, you will see a list of ite
 - Radio **(to be explained more in detail in the next section)**
 - Flight modes **(to be explained more in detail in the next section)**
 - Motors testing (Make sure the rotation direction is correct)
+- Safety (Low Battery -> Land; RC Loss -> Kill)
 - Parameters (Much more flexible settings!)
 
 Try not to modify the PID parameters whcih would cause unstability. For motor testing, you can use a wide strip of paper/plastic to touch the top of the motor to reveal the direction. In any case that the motor direction is incorrect, you could confige it using the BLHeli-S software to turn the ESCs. Fun fact: you can even make your ESC to control the motors to "sing" using this software! Doing this could win your team a bonus of 1% :) 
@@ -78,7 +79,7 @@ However, this only means that your pixhawk is ready to Arm, but your drone might
 - Are all the components installed tight and in proper positions?
 - Are the motors rotating in correct directions?
 
-Finally and most importantly, I cannot emphasize more on the importance of the **safety checklist and safety always in your mind**. Please make sure all your team members fully understand it, and do serious rehearsals before the demo (we will pick a random number as the "pilot" to hold the Taranis!). Just like the strtict safety requirement in the real aviation system, you will only have one chance for the demo, and failure on just one part could lose all your mark for this challenge.
+Finally and most importantly, I cannot emphasize more on the importance of the **safety checklist and safety always in your mind**. Please make sure all your team members fully understand it, and **do serious rehearsals** before the demo (we will pick a random number as the "pilot" to hold the Taranis!). Just like the strtict safety requirement in the real aviation system, you will only have one chance for the demo, and failure on just one part could lose all your mark for this challenge.
 
 If you have any questions, feel free to google, post on discussion board, or ask the TAs. You are given a fairly long time for this task, so if you finish early, it is strongly recommended to breakdown the work into small-tasks, distribute roles among team members and plan your timeline ahead. There are a lot ahead of you to continue to look into such as configuring your Jetson nano, modifying/redesigning/printing the chassis, learning to do simple hover, using the Vicon system, and using the MAVLink API(MAVSDK/MAVROS) to control the Pixhawk with Jetson nano. The better you learn these, the more you could do with this drone platform and the furthur you will go in this project.
 
