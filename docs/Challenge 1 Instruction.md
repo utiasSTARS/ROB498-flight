@@ -18,7 +18,10 @@ Within the kit, you will find that the power distribution board is already solde
 - RC (Remote control) receiver connection to the pixhawk
 - TeraRanger EVO 60m connection to the pixhawk
 
-Hint/advice: Not all detailed info/how-to is provided in this manual. You are expected to check the docs/pinouts/official websites of all the avionic parts to get more information. It is also recommended to learn to manage your team's own docs as you are using more of them and increasing complexity. One thing that I could put right here and you will use a lot is the ESC & motor numbering and rotation direction as recognized by the flight controller:
+Hint/advice: 
+- Not all detailed info/how-to is provided in this manual. You are expected to check the docs/pinouts/official websites of all the avionic parts to get more information. 
+- To connect the RC receiver to pixhawk, the wires that come with the receiver itself are incompatible, please find the JST-GH 4 pin to picoblade 5 pin wire that comes with the Pixhawk. Although the RC receiver's connector is picoblade 6 pin, the wire could still work if you align the pinout correctly. Be careful not to break the connectors.
+- It is recommended to learn to manage your team's own docs as you are using more of them and increasing complexity. One thing that I could put right here and you will use a lot is the ESC & motor numbering and rotation direction as recognized by the flight controller:
 
 <img src = "img/QuadRotorX.8e9a5495.svg" width = "200">
 
@@ -45,7 +48,10 @@ Try not to modify the PID parameters which would cause instability. For motor te
 ## Radio Setup
 As introduced above, radio setup and flight modes need more work and standard setups. It may also take some time for you to learn how to use the Taranis Remote Control Transmitter (will be referred to as "Taranis" in the following parts) since it provides a lot of flexibilities and is more advanced than the toy-level remote controllers!
 
-To set up the radio, you need to first bind it with the RC receiver (the ARCHER R4) following the instructions in its manual (have a hardcopy with the module, you can also always find it online), and check in the "Radio" tab if you can see the reactions. If the receiver is stuck in the reg mode, contact TA. 
+Before binding the Taranis to the receiver, you need to first check the RF module firmware version on the Taranis. In the main page, long press the [MENU] button and you will enter the general setting for the entire Taranis. Short press the [PAGE] button to go to page page 7, and you will be able to check the [Modules/RX Version].
+If you have your internal RF module active (by default usinng the origional antenna), you should see the module name ISRM-M. Some of the Taranis has ISRM version 1.1.3 FCC, which will not work with ARCHER R4 receiver. You will need to find a small SD card to update it to 2.1.0 FCC. The firmware and update instructions can be found on the Taranis official website. If you cannot find a micro SD card (should be smaller than 8GB) that works with Taranis, contact TA.
+
+To bind your Taranis with the RC receiver (the ARCHER R4), simply follow the instructions in its manual (have a hardcopy with the module, you can also always find it online), and check in the "Radio" tab if you can see the reactions. If the receiver is stuck in the reg mode, contact TA. 
 
 The attitude control is generally mapped as "American Hand" as shown in the figure below. If you would like to control it in another fashion, please notify the Head TA. Remember also to do the calibration for the first time setup and make sure that the channel mappings are correct (for example, you do not want moving throttle on the RC, and it appears to be pitch on the flight controller!). If the mapping is incorrect, you can change the channel setting in Taranis.
 
