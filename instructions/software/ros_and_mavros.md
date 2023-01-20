@@ -1,8 +1,12 @@
 # Getting Started With Your Jetson Nano Dev Kit
 
-The provided VIDIA Jetson Nano Dev Kit is a mini computer widely used amongst robotics enthusiasts. In this course, we will use the Jetson Nano as the computing unit for the drone to complete a set of autonomous flying challenges. Before starting, you should take a look at the official [Nvidia instruction](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit) on how to set up your device.
+The provided NVIDIA Jetson Nano Dev Kit is a mini computer widely used amongst robotics enthusiasts. In this course, we will use the Jetson Nano as the computing unit for the drone to complete a set of autonomous flying challenges. Before starting, you should take a look at the official [NVIDIA Instruction](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit) on how to set up your device.
 
+NVIDIA provides an [SD card image](https://developer.nvidia.com/jetson-nano-sd-card-image) which installs a custom version of Ubuntu 18 on your Jetson. We also provide a modified version of the image that comes with a set of pre-installed packages for easier setup.
 
+To use the pre-configured image, first download the zip file [here](https://drive.google.com/file/d/1c-AUyDF2ZgA6t0d_pnyBmTgDt-NZ41I6/view?usp=share_link) and unzip it on your host Ubuntu machine. Note that you will need 64GB of free disk space to store the image file. Next, connect the provided microSD card to your host computer and open the Disks app. Select Restore Disk Image... in the menu to flash the disk image to the microSD as shown in the figure below.
+
+<img src = "images/flash_sd.png">
 
 # MAVROS
 
