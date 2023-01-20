@@ -48,3 +48,12 @@ The Jetson Nano will communicate with the Pixhawk 4 Mini through the */dev/ttyTH
 
 `sudo chmod 666 /dev/ttyTHS1`
 
+## Test Connection - Get Pose From Pixhawk!
+
+Now the two devices are ready to talk to each other! To test the communication, we can run the following commands on Jetson
+- In the first terminal, launch ROS by running `roscore`
+- In the second terminal, launch MAVROS by running `roslaunch mavros px4.launch`. The launch file already contains the necessary modifications to coomunicate with the Pixhawk
+- MAVROS by default publishes information at a very low rate. We can increase the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry.
+- To verify, we can check the publish rate by running `rostopic hz /mavros/odometry/in` in the forth terminal. You can also use *rviz* to visualize the received pose.
+
+
