@@ -45,6 +45,6 @@ Before the two devices can communicate with each other, we need to set some para
 ## Configure Jetson Nano
 
 The Jetson Nano will communicate with the Pixhawk 4 Mini through the */dev/ttyTHS1* terminal and we need to grant read and write permission. In a terminal on Jetson Nano, execute the following command
-'''
-sudo chmod 666 /dev/ttyTHS1
-'''
+
+`sudo chmod 666 /dev/ttyTHS1`
+
