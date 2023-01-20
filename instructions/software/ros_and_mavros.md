@@ -40,6 +40,7 @@ The Pixhawk 4 Mini's **Telem 1** port can be connected to Jetson Nano's **GPIO**
 Before the two devices can communicate with each other, we need to set some parameters on Pixhawk 4 Mini. Download and install **QGroundControl (QGC)** on your host computer by following the instruction [here](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html). Connect the Pixhawk 4 Mini to the computer and once it shows up in QGC, set the following parameters ([tutorial](https://docs.qgroundcontrol.com/master/en/SetupView/Parameters.html))
 - *SER_TEL1_BAUD* to 921600
 - *MAV_0_RATE* to 921600
+You may also calibrate the sensors (e.g. IMU and leveler) in QGC.
 
 
 ## Configure Jetson Nano
