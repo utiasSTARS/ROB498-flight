@@ -41,7 +41,7 @@ Before the two devices can communicate with each other, we need to set some para
 - *SER_TEL1_BAUD* to 921600
 - *MAV_0_RATE* to 921600
 
-You may also calibrate the sensors (e.g. IMU and leveler) in QGC.
+You may also [calibrate the sensors](https://docs.qgroundcontrol.com/master/en/SetupView/sensors_px4.html) in QGC.
 
 
 ## Configure Jetson Nano
