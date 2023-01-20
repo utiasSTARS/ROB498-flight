@@ -4,36 +4,39 @@ The provided NVIDIA Jetson Nano Dev Kit is a mini computer widely used amongst r
 
 NVIDIA provides an [SD card image](https://developer.nvidia.com/jetson-nano-sd-card-image) which installs a custom version of Ubuntu 18 on your Jetson. We also provide a modified version of the image that comes with a set of pre-installed packages for easier setup.
 
-To use the pre-configured image, first download the zip file [here](https://drive.google.com/file/d/1c-AUyDF2ZgA6t0d_pnyBmTgDt-NZ41I6/view?usp=share_link) and unzip it on your host Ubuntu machine. Note that you will need at least 64GB of free disk space to store the image file. Next, connect the provided microSD card to your host computer and open the **Disks** app. Select **Restore Disk Image...** in the menu to flash the disk image to the microSD as shown in the figure below.
+To use the pre-configured image, first download the zip file [here](https://drive.google.com/file/d/1c-AUyDF2ZgA6t0d_pnyBmTgDt-NZ41I6/view?usp=share_link) and unzip it on your host Ubuntu machine. Note that you will need at least 64GB of free disk space to store the image file. Next, connect the provided microSD card to your host computer and open the **Disks** app. Select the SD card from the drive list on the left and then use the **Restore Disk Image...** option in the menu to flash the disk image to the microSD, as shown in the figure below. The process will take about 20 minutes.
 
 <img src = "https://github.com/utiasSTARS/ROB498-flight/blob/0f973e2960fc59ea7a5dc7dec1d59a7b93ecab13/instructions/images/flash_sd.png">
 
-# MAVROS
+Once finished, insert the microSD into the Jetson and power it on. The username and password are both *rob498*. The system comes with the following packages:
+- ROS Melodic
+- MAVROS
+- Intel Realsense SDK 2.0
+- Auterion VIO
 
-MAVROS is a ROS package which contains a communication node for the MAVLink protocol. It is used for this course as a bridge between the *Jetson Nano*, containing ROS-based drone commands, and the *Pixhawk 4 Mini*, the flight controller for the course drones. 
+## ROS - Robot Operating System
 
-## Installation
+ROS is a set of libraries and tools that help people build robotic software. If you have never used ROS before, we encourage you to go through the [ROS tutorials](http://wiki.ros.org/ROS/Tutorials). In the following sections we will use ROS as the communication platform to talk to the sensors. However, this is not mandatory and you can use other software such as *MAVLink*.
 
-The official MAVROS installation guide can be found here: 
+## MAVROS
 
-> https://github.com/mavlink/mavros/blob/master/mavros/README.md#installation
+MAVROS is a ROS package that provides a wrapper for the MAVLink protocol. We use it as a bridge between the Jetson Nano and other devices such as the Pixhawk 4 Mini flight controller and the Intel Realsense T265 Tracking Camera.
 
-You can decide on whether or not to install the package using a binary installation for from source, however it is our recommendation that the MAVROS package be installed from source to your catkin workspace. Though this creates a very long (~45 minute) first build time, this allows the user to more easily modify the mavros launch files if need be. 
+## Intel Realsense VIO
 
-## Modifications
+The Intel Realsense T265 Tracking Camera provides onboard visual-interial odometry capability to your drone. We will use the estimated pose from the T265 camera to localize your drone when flying. The pre-installed *Auterion VIO* package provides an easy way to communicate with the camera and obtain the estimated pose through *MAVROS*.
 
-You must conduct a few small modifications to the launch and configuration files of the MAVROS node before using it with your drone. 
+# Communication Between Jetson Nano and Pixhawk 4 mini
 
-### Enable Rangefinder Measurements
+## Wiring Between Jetson Nano and Pixhawk 4 Mini
 
-To allow MAVROS to recieve rangefinder measurements from the Pixhawk, navigate to ``mavros/mavros/launch/px4_pluginlists.yaml`` and comment out or delete the "- rangefinder" and "- distance_sensor" lines under the **plugin_blacklist** heading.
+The Pixhawk 4 Mini's **Telem 1** port can be connected to Jetson Nano's **GPIO** pins using the provided JST-GH-to-Dupont jumper wire. This [video](https://www.youtube.com/watch?v=nIuoCYauW3s) provides a good instruction on how to connect the pins. Since the jumper wire is provided, you do not need to do any soldering. In summary, you will
+- Connect **Pin 2** of **Telem 1** (TX/out) on Pixhawk 4 Mini to **Pin 10** of **GPIO** (UART_RX/in, /dev/ttyTHS1) on Jetson Nano
+- Connect **Pin 3** of **Telem 1** (RX/in) on Pixhawk 4 Mini to **Pin 8** of **GPIO** (UART_TX/out, /dev/ttyTHS1) on Jetson Nano
+- Connect **Pin 6** of **Telem 1** (Ground) on Pixhawk 4 Mini to **Pin 9** of **GPIO** (Ground) on Jetson Nano
 
-## Usage Instructions
+## Configure Pixhawk 4 Mini
 
-To start ROS-based communication between the *Jetson Nano* and the *Pixhawk 4 Mini*, run the following command:
-
-```shell
-$ roslaunch mavros px4.launch fcu_url:/dev/ttyTHS1:921600
-```
-
-This starts the mavros node using middleware to connect with the **PX4** firmware running on the Pixhawk. It also specifies the GPIO pins as the targeted communication port on the Jetson (``/dev/ttyTHS1``) and to send messages with a baudrate of 921600 B/s. 
+Before the two devices can communicate with each other, we need to set some parameters on Pixhawk 4 Mini. Download and install **QGroundControl (QGC)** on your host computer by following the instruction [here](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html). Connect the Pixhawk 4 Mini to the computer. Once it shows up in QGC, set the following parameters ([tutorial](https://docs.qgroundcontrol.com/master/en/SetupView/Parameters.html))
+- *SER_TEL1_BAUD* to 921600
+- *MAV_0_RATE* to 921600
