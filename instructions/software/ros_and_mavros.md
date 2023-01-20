@@ -24,7 +24,7 @@ MAVROS is a ROS package that provides a wrapper for the MAVLink protocol. We use
 
 ## Intel Realsense VIO
 
-The Intel Realsense T265 Tracking Camera provides onboard visual-interial odometry capability to your drone. We will use the estimated pose from the T265 camera to localize your drone when flying. The pre-installed *Auterion VIO* package provides an easy way to communicate with the camera and obtain the estimated pose through *MAVROS*.
+The Intel Realsense T265 Tracking Camera provides onboard visual-interial odometry capability to your drone. We will use the estimated pose from the T265 camera to localize your drone when flying. The pre-installed [*Auterion VIO*](https://github.com/Auterion/VIO) package provides an easy way to communicate with the camera and obtain the estimated pose through *MAVROS*.
 
 # Communication Between Jetson Nano and Pixhawk 4 mini
 
@@ -56,4 +56,6 @@ Now the two devices are ready to talk to each other! To test the communication, 
 - MAVROS by default publishes information at a very low rate. We can increase the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry.
 - To verify, we can check the publish rate by running `rostopic hz /mavros/odometry/in` in the fourth terminal. You can also use *rviz* to visualize the received poses.
 
+# Use Realsense T265 Tracking Camera For Pose Estimation
 
+The Pixhawk Mini only uses the internal IMU to estimate its pose, which could drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. First, you need to connect the camera to the Jetson using the provided USB3.0 cable. The Auterion VIO package is installed at `~/thirdparty/vio_ws`. Source this ROS workspace and run `roslaunch px4_realsense_bridge bridge_mavros.launch` to launch the bridge. The estimated poses should be published under the `/mavros/odometry/out` topic.   
