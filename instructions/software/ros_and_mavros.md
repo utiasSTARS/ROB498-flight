@@ -37,6 +37,14 @@ The Pixhawk 4 Mini's **Telem 1** port can be connected to Jetson Nano's **GPIO**
 
 ## Configure Pixhawk 4 Mini
 
-Before the two devices can communicate with each other, we need to set some parameters on Pixhawk 4 Mini. Download and install **QGroundControl (QGC)** on your host computer by following the instruction [here](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html). Connect the Pixhawk 4 Mini to the computer. Once it shows up in QGC, set the following parameters ([tutorial](https://docs.qgroundcontrol.com/master/en/SetupView/Parameters.html))
+Before the two devices can communicate with each other, we need to set some parameters on Pixhawk 4 Mini. Download and install **QGroundControl (QGC)** on your host computer by following the instruction [here](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html). Connect the Pixhawk 4 Mini to the computer and once it shows up in QGC, set the following parameters ([tutorial](https://docs.qgroundcontrol.com/master/en/SetupView/Parameters.html))
 - *SER_TEL1_BAUD* to 921600
 - *MAV_0_RATE* to 921600
+
+
+## Configure Jetson Nano
+
+The Jetson Nano will communicate with the Pixhawk 4 Mini through the */dev/ttyTHS1* terminal and we need to grant read and write permission. In a terminal on Jetson Nano, execute the following command
+'''
+sudo chmod 666 /dev/ttyTHS1
+'''
