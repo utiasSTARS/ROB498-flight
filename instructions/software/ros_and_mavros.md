@@ -4,9 +4,9 @@ The provided NVIDIA Jetson Nano Dev Kit is a mini computer widely used amongst r
 
 NVIDIA provides an [SD card image](https://developer.nvidia.com/jetson-nano-sd-card-image) which installs a custom version of Ubuntu 18 on your Jetson. We also provide a modified version of the image that comes with a set of pre-installed packages for easier setup.
 
-To use the pre-configured image, first download the zip file [here](https://drive.google.com/file/d/1c-AUyDF2ZgA6t0d_pnyBmTgDt-NZ41I6/view?usp=share_link) and unzip it on your host Ubuntu machine. Note that you will need 64GB of free disk space to store the image file. Next, connect the provided microSD card to your host computer and open the Disks app. Select Restore Disk Image... in the menu to flash the disk image to the microSD as shown in the figure below.
+To use the pre-configured image, first download the zip file [here](https://drive.google.com/file/d/1c-AUyDF2ZgA6t0d_pnyBmTgDt-NZ41I6/view?usp=share_link) and unzip it on your host Ubuntu machine. Note that you will need at least 64GB of free disk space to store the image file. Next, connect the provided microSD card to your host computer and open the **Disks** app. Select **Restore Disk Image...** in the menu to flash the disk image to the microSD as shown in the figure below.
 
-<img src = "instructions/images/flash_sd.png">
+<img src = "instructions/images/flash_sd.png](https://github.com/utiasSTARS/ROB498-flight/blob/0f973e2960fc59ea7a5dc7dec1d59a7b93ecab13/instructions/images/flash_sd.png)">
 
 # MAVROS
 
