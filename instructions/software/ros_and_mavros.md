@@ -1,3 +1,9 @@
+# Getting Started With Your Jetson Nano Dev Kit
+
+The provided VIDIA Jetson Nano Dev Kit is a mini computer widely used amongst robotics enthusiasts. In this course, we will use the Jetson Nano as the computing unit for the drone to complete a set of autonomous flying challenges. Before starting, you should take a look at the official [Nvidia instruction](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit) on how to set up your device.
+
+
+
 # MAVROS
 
 MAVROS is a ROS package which contains a communication node for the MAVLink protocol. It is used for this course as a bridge between the *Jetson Nano*, containing ROS-based drone commands, and the *Pixhawk 4 Mini*, the flight controller for the course drones. 
