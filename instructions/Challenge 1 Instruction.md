@@ -96,11 +96,3 @@ The ready-to-test drone should look like this, with all the components installed
 Finally and most importantly, I cannot emphasize more on the importance of the **safety checklist and safety always in your mind**. Please make sure all your team members fully understand it, and **do serious rehearsals** before the demo (we will pick a random number as the "pilot" to hold the Taranis!). The detailed grading policy will be posted soon in another document.  
 
 If you have more questions, feel free to consult google, post on the discussion board, or ask the TAs/Professor. You will have a fairly long time for this task. Thus, try to avoid squeezing everything to the deadline since there is a considerable amount of information to digest. If you finish early, it is strongly recommended to break down the work into small tasks, distribute the work to team members and plan your timeline in advance. There are a lot of tasks ahead of you to **continue to look into** such as configuring your Jetson nano, modifying/redesigning/printing the chassis, learning to do simple hover, using the Vicon system, and using the MAVLink API(MAVSDK/MAVROS) to control the Pixhawk with Jetson nano. The deeper you understand these, the better you can do with this drone platform and the further you will go in this project.
-
-
-
-
-
-
-
- 

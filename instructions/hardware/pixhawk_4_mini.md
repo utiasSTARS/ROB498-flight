@@ -1,18 +1,18 @@
 # Pixhawk 4 Mini
 
-The *Pixhawk 4 Mini* is a flight controller developed in collaboration with Holybro and Auterion. It is configured with **PX4** firmware using the QGroundControl program. More information about the *Pixhawk 4 Mini* can be found here:
+The Pixhawk 4 Mini is a flight controller developed in collaboration with Holybro and Auterion. It is configured with the open source PX4 firmware using the QGroundControl program. More information about the Pixhawk 4 Mini can be found here:
 
-> https://docs.px4.io/master/en/flight_controller/pixhawk4_mini.html
+https://docs.px4.io/main/en/flight_controller/pixhawk4_mini.html
 
 ## Drone Setup with QGroundControl
 
-The Pixhawk requires installation of PX4 firmware before it is ready to be used as a flight controller. Afterwards, multiple internal sensors and external modules/connections require configuration through internal parameters to function properly. Both of these actions can be done using the *QGroundControl* software on a separate setup machine. QGroundControl can be installed onto Windows, Mac OS, and Ubuntu systems, though this course recommends running it on Mac OS or Ubuntu since the Windows version has some startup and video rendering issues. 
+Multiple Pixhawk internal sensors and external modules/connections require configuration to function properly. These actions can be carried out using the QGroundControl software on a separate setup machine. QGroundControl can be installed ontono Windows, MacOS, and Ubuntu systems - we recommends running it on MacOS or Ubuntu since the Windows version has some startup and video rendering issues. 
 
 See the following link for installation instructions:
 
-> https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html
+https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html
 
-Once QGroundControl is installed and running, you can connect the Pixhawk to your setup computer using a USB -> microUSB cable (the microUSB port is located on the side of the Pixhawk next to the "Debug" port). The software should automatically detect it. By clicking the QGroundControl logo in the top left corner, you can enter either the **Vehicle Setup** or **Analyze Tools** toolkits, which will be relevant for later sections.
+Once QGroundControl is installed and running, you can connect the Pixhawk to your setup computer using a USB->microUSB cable (the microUSB port is located on the side of the Pixhawk next to the "Debug" port). The software should automatically detect it. By clicking the QGroundControl logo in the top left corner, you can enter either the **Vehicle Setup** or **Analyze Tools** screens, which will be relevant for later sections.
 
 If you navigate the the **Vehicle Setup** section, you will see a summary of Pixhawk modules that must be configured before use.
 
@@ -20,39 +20,20 @@ If you navigate the the **Vehicle Setup** section, you will see a summary of Pix
 
 Navigate to **Vehicle Setup/Firmware**. Unplug the Pixhawk and wait for the prompt to reconnect. Once connected, select the **PX4 Pro Stable Release** flight stack from the righthand menu and wait for it to install.
 
-### Airframe
-
-Navigate to **Vehicle Setup/Airframe**. For this course, you can select the **Quadrotor x** configuration and use the **Generic Quadcopter** option from the dropdown menu. Afterwards, hit **Apply and Restart** on the righthand side.
-
 ### Sensors
 
 Navigate to **Vehicle Setup/Sensors**. Follow the instructions for calibrating the **Compass**, **Gyroscope**, **Accelerometer**, and **Level Horizon** modules by clicking on each tab in order. 
-
-### Radio
-
-**TBD**
-
 ### Flight Modes
 
-Navigate to **Vehicle Setup/Flight Modes**. After completing the radio controller setup in the previous section, here you can bind specific hardware switches on the handheld RC (denoted as "channels" in QGroundControl) to specific actions. While you will be flying your drone in this course through commands from the *Jetson Nano*, it is useful for safety purposes to allow flight using the RC.
+Navigate to **Vehicle Setup/Flight Modes**. After completing the radio controller setup, you can bind specific hardware switches on the handheld RC (denoted as "channels" in QGroundControl) to specific actions. While you will be flying your drone in this course using commands sent from the Jetson Nano, it is useful for safety purposes to enable flight using the RC.
 
-This course recommends that you bind **Arm switch channel** (which readies the motors for use), **Emergency kill switch channel** (which cuts power to the motors), and **Offboard switch channel** (which toggles the allowance of control from the Jetson) to easily accessible switches. 
+We recommend that you bind **Arm switch channel** (which readies the motors for use), **Emergency kill switch channel** (which cuts power to the motors), and **Offboard switch channel** (which toggles the allowance of control from the Jetson) to easily accessible switches. 
 
 You should also use a separate channel for the **Flight Mode Settings** to easily enter modes like **Manual** and **Stabilized**. You may also wish to control entry to **Offboard** mode from here.
 
-More information on Pixhawk flight modes is available here, under the **Multicopter** section:
+More information on Pixhawk is avaiable in the Getting Started guide:
 
-> https://docs.px4.io/v1.9.0/en/flight_modes/
-
-Note the requirements for entry to each mode. 
-
-### Power
-
-**TBD**
-
-### Safety
-
-**TBD**
+https://docs.px4.io/main/en/getting_started/
 
 ## Wiring and Connections
 
