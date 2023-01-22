@@ -1,4 +1,4 @@
-# Setting Up Your Drong to Fly *Safely*
+# Setting Up Your Drone to Fly *Safely*
 
 Authors: Xuan Wang and Jonathan Kelly
 
