@@ -66,3 +66,14 @@ Now the two devices are ready to talk to each other! To test the comms, we can r
 # Use Realsense T265 Tracking Camera For Pose Estimation
 
 The Pixhawk Mini only uses the internal IMU to estimate its pose, which could drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. First, you need to connect the camera to the Jetson using the provided USB3.0 cable. The Auterion VIO package is installed at `~/thirdparty/vio_ws`. Source this ROS workspace and run `roslaunch px4_realsense_bridge bridge_mavros.launch` to launch the bridge. The estimated poses should be published under the `/mavros/odometry/out` topic.
+
+
+# Wifi
+
+This section provides instruction on how to setup Wifi on your Jetson Nano. 
+- Boot your Jetson Nano and connect it to Ethernet. The TP-Link AC1300 dongle should *NOT* be plugged into any of the USB ports.
+- Install *git* on your Jetson: `sudo apt install git`
+- Clone the driver to your Jetson: `git clone https://github.com/RinCat/RTL88x2BU-Linux-Driver.git`
+- Build and install the driver: `cd RTL88x2BU-Linux-Driver && make ARCH=arm64 && sudo make install`
+- Reboot your Jetson
+- Plug in the TP-Link dongle and your Wifi should work
