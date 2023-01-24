@@ -1,7 +1,6 @@
 # ROB498-flight
 
-This repository contains flight-related code and documentation for the
-ROB498 capstone design course at the University of Toronto.
+This repository contains flight-related code and documentation for the ROB498 capstone design course at the University of Toronto.
 
 ### Resources
 

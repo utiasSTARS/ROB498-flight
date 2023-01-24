@@ -70,10 +70,10 @@ The Pixhawk Mini only uses the internal IMU to estimate its pose, which could dr
 
 # Wifi
 
-This section provides instruction on how to setup Wifi on your Jetson Nano. 
+This section provides instruction on how to setup the wireless (wifi) interfact on your Jetson Nano. 
 - Boot your Jetson Nano and connect it to Ethernet. The TP-Link AC1300 dongle should *NOT* be plugged into any of the USB ports.
 - Install *git* on your Jetson: `sudo apt install git`
 - Clone the driver to your Jetson: `git clone https://github.com/RinCat/RTL88x2BU-Linux-Driver.git`
 - Build and install the driver: `cd RTL88x2BU-Linux-Driver && make ARCH=arm64 && sudo make install`
 - Reboot your Jetson
-- Plug in the TP-Link dongle and your Wifi should work
+- Plug in the TP-Link dongle and your wifi connection should work (i.e., you should be able to choose a network to connect to)
