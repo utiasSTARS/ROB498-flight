@@ -37,7 +37,7 @@ In practice, the correct avionic connections will not fully ensure that the moto
 
 <img src = "../images/QGC.png">
 
-First, open QGC and click the logo on the top left to enter the vehicle setup page. Update the firmware to the latest version as instructed on the screen, and make sure the airframe is selected as **"Generic Quadcopter"**. Every time you plug in the Pixhawk using the micro USB cable, QGC should auto-detect it and connect automatically.
+First, open QGC and click the logo on the top left to enter the vehicle setup page. Update the firmware to the latest version as instructed on the screen, and make sure the airframe is selected as **"Lumenier 5 inch (the one that is below the generic quadcopter)"**. Every time you plug in the Pixhawk using the micro USB cable, QGC should auto-detect it and connect automatically.
 
 If you go to vehicle setup after the firmware update, you will see a list of items to do on the left of the screen. Please check in sequence and configure everything accordingly. The key settings are:
 
