@@ -40,7 +40,7 @@ The Jetson GPIO pinout configuration can be found here:
 
 https://www.jetsonhacks.com/nvidia-jetson-nano-j41-header-pinout/
 
-Pins **6**, **8**, and **10** in the Jetson Header board are used for the UART connection to the Pixhawk. Note that for UART connections, RX -> TX and TX -> RX from the Jetson to the Pixhawk. Pin **6** may be labeled as **GND** on the physical Jetson board, but it is in the space specified by the above link and should be wired to the GND pin of the TELEM1 port.
+Pins **6**, **8**, and **10** in the Jetson Header board are used for the UART connection to the Pixhawk. Note that for UART connections, RX -> TX and TX -> RX from the Jetson to the Pixhawk. Pin **6** may be labeled as **GND** on the physical Jetson board, but it is in the space specified by the above link and should be wired to the GND pin of the TELEM1 port. A connection cable (6-pin JST-GH to 3-pin Dupont) is provided in your kit.
 
 Note the address for these UART pins on the Jetson header board is listed as ``/dev/ttyTHS1``, which will be useful when setting up a MAVROS based connection for these devices.
 
@@ -50,7 +50,7 @@ The following sections mainly concern parameters that can be found in the **Para
 
 ### Onboard Jetson Communication
 
-Communication with the Jetson Nano through the GPIO pins must be configured by changing a few parameters. First, you must configure the Pixhawk to send and receive MAVLink messages at an acceptable rate. This can be done by setting the following parameters:
+Communication with the Jetson Nano is through the GPIO pins and must be configured by changing a few parameters. First, you must configure the Pixhawk to send and receive MAVLink messages at an acceptable rate. This can be done by setting the following parameters:
 
 - MAV_0_RATE        -> 921600 B/s
 - SER_TEL1_BAUD     -> 921600 8N1
