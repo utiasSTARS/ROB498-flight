@@ -67,7 +67,6 @@ Now the two devices are ready to talk to each other! To test the comms, we can r
 
 The Pixhawk Mini only uses the internal IMU to estimate its pose, which could drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. First, you need to connect the camera to the Jetson using the provided USB3.0 cable. The Auterion VIO package is installed at `~/thirdparty/vio_ws`. Source this ROS workspace and run `roslaunch px4_realsense_bridge bridge_mavros.launch` to launch the bridge. The estimated poses should be published under the `/mavros/odometry/out` topic.
 
-
 # Wifi
 
 This section provides instruction on how to setup the wireless (wifi) interfact on your Jetson Nano. 
@@ -77,3 +76,11 @@ This section provides instruction on how to setup the wireless (wifi) interfact 
 - Build and install the driver: `cd RTL88x2BU-Linux-Driver && make ARCH=arm64 && sudo make install`
 - Reboot your Jetson
 - Plug in the TP-Link dongle and your wifi connection should work (i.e., you should be able to choose a network to connect to)
+
+# Running Ubuntu and ROS in a Docker Container
+
+NVIDIA currently supports Ubuntu 18.04 on the Jetson Nano. The compatible ROS version is Melodic Morenia. Both the OS and the ROS version are somewhat dated (as of 2023).
+
+Thankfully, EngSci Robo Jonathan Spraggett has come to the rescue by providing an updated Docker container (image) that is set up to run Ubuntu 20.04 and ROS Noetic Ninjemys! The container supports access to the Jetson CUDA cores, too!
+
+You can find Jonathan's instructions and support code on GitHub [here](https://github.com/manx52/ROB498), and the Docker image on DockerHub [here](https://hub.docker.com/r/utrarobosoccer/rob498). These resources will be integrated into our course resource repositories shorlty.
