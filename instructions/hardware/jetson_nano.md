@@ -84,3 +84,18 @@ NVIDIA currently supports Ubuntu 18.04 on the Jetson Nano. The compatible ROS ve
 Thankfully, EngSci Robo Jonathan Spraggett has come to the rescue by providing an updated Docker container (image) that is set up to run Ubuntu 20.04 and ROS Noetic Ninjemys! The container supports access to the Jetson CUDA cores, too!
 
 You can find Jonathan's instructions and support code on GitHub [here](https://github.com/manx52/ROB498), and the Docker image on DockerHub [here](https://hub.docker.com/r/utrarobosoccer/rob498). These resources will be integrated into our course repositories shortly.
+
+
+# Receiving Vicon Poses via ROS Using Wifi
+
+Vicon is a high precision tracking system that can provide real-time pose estimate to the drone during flight. We have step up the infrastructure so your Jetson Nano can access data from the Vicon sysetm using onboard Wifi in the format of ROS messages. This section provides the instruction on how to configure your Jetson in order to join the ROS network.
+
+First, you need to connect your Jetson to our router. The SSID is `TP_LINK_ROB498` and the password is `rob498drones`. Once connected, you should set up static IP for the Jetson. To do so, open **Settings**, and navigate to the **Wi-Fi** tab. Click on the arrow beside the connection to open the network interface dialog box. Go to the **IPv4** tab, and change the **IPv4 Method** to **Manual**. In the **Address** box, enter **10.42.0.1xx** where *1xx* should be *100* + *your team number*. For example, if you were team 12 then your IP should be *10.42.0.112*. Next, in the **Netmask** box, enter **24**. Save and close the window. The setting will be applied after you reconnect to the network. Verify that your IP address has been updated using the **ifconfig** command.
+
+Once you have verified your IP address, add the following lines to `~/.bashrc`
+ -`export ROS_MASTER_URI=http://10.42.0.100:11311`
+ -`export ROS_IP=*YOUR_IP*`
+ 
+ Now you should be able to subscribe to the Vicon pose messages using ROS. To verify, open a new terminal window and run the following command:
+ - `rostopic echo /vicon/VICON_NAME/VICON_NAME`
+ where `VICON_NAME` will be provided by your TA. If you do not see any messages being printed, reach out to your TA.
