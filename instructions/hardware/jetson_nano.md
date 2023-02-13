@@ -98,4 +98,5 @@ Once you have verified your IP address, add the following lines to `~/.bashrc`
  
  Now you should be able to subscribe to the Vicon pose messages using ROS. To verify, open a new terminal window and run the following command:
 -  `rostopic echo /vicon/VICON_NAME/VICON_NAME`
+ 
  where `VICON_NAME` will be provided by your TA. If you do not see any messages being printed, reach out to your TA.
