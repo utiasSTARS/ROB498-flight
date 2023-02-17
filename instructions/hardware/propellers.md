@@ -8,8 +8,7 @@ The numbers that are most important are diameter and pitch; a reasonable text/vi
 
 ## Recommended Propeller Choices
 
-We recommend three-blade, 5" propellers with a pitch of 4" (ish). Possible choices include...
-
+We recommend three-blade, 5" propellers with a pitch of 4" (ish). Possible choices include [these Gemfan Hurricane props](https://rotorgeeks.com/props/5-inch/gemfan-hurricane-mck-51466-v2-3-blade) that we have purchased for the course. However, other 5" units should also work, with pitch from 3.5"-4" and with an M5 centre hole diameter (to fit the drone motor shafts).
 ## Larger-Diameter Propellers
 
 We do not recommend 6" propellers for your drone. They will work, but the clearance between the edge of the propeller and the frame is limited.
