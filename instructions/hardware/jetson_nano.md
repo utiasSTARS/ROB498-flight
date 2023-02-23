@@ -96,7 +96,7 @@ Once you have verified your IP address, run the following commands in your termi
 - `export ROS_MASTER_URI=http://10.42.0.100:11311`
 - `export ROS_IP=*YOUR_IP*`
  
- Now you should be able to subscribe to the Vicon pose messages using ROS. To verify, open a new terminal window and run the following command:
+ Note that all ROS nodes should be connected to the `roscore` on the scoring computer, not on your Jetson. Now you should be able to subscribe to the Vicon pose messages using ROS. To verify, open a new terminal window and run the following command:
 -  `rostopic echo /vicon/VICON_NAME/VICON_NAME`
  
  where `VICON_NAME` will be provided by your TA. If you do not see any messages being printed, reach out to your TA.
