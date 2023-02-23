@@ -60,7 +60,7 @@ Now the two devices are ready to talk to each other! To test the comms, we can r
 
 - In the first terminal, launch ROS by running `roscore`
 - In the second terminal, launch MAVROS by running `roslaunch mavros px4.launch`. The launch file already contains the necessary modifications to communicate with the Pixhawk
-- MAVROS by default publishes information at a very low rate. We can increase the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 Hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry.
+- MAVROS by default publishes information at a very low rate, or not publishes them at all. We can enable data streams, and set the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 Hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry. 
 - To verify, we can check the publishing rate by running `rostopic hz /mavros/odometry/in` in the fourth terminal. You can also use RViz to visualize the vehicle pose.
 
 # Use Realsense T265 Tracking Camera For Pose Estimation
