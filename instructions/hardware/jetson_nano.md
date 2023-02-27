@@ -91,12 +91,8 @@ You can find Jonathan's instructions and support code on GitHub [here](https://g
 Vicon is a high precision tracking system that can provide real-time pose estimate to the drone during flight. We have step up the infrastructure so your Jetson Nano can access data from the Vicon sysetm using onboard Wifi in the format of ROS messages. This section provides the instruction on how to configure your Jetson in order to join the ROS network.
 
 First, you need to connect your Jetson to our router. The SSID is `TP_LINK_ROB498` and the password is `rob498drones`. Once connected, you should set up static IP for the Jetson. To do so, open **Settings**, and navigate to the **Wi-Fi** tab. Click on the arrow beside the connection to open the network interface dialog box. Go to the **IPv4** tab, and change the **IPv4 Method** to **Manual**. In the **Address** box, enter **10.42.0.1xx** where *1xx* should be *100* + *your team number*. For example, if you were team 12 then your IP should be *10.42.0.112*. Next, in the **Netmask** box, enter **24**. Save and close the window. The setting will be applied after you reconnect to the network. Verify that your IP address has been updated using the **ifconfig** command.
-
-Once you have verified your IP address, run the following commands in your terminal (every time you want to launch a ROS node)
+  Now you should be able to subscribe to the Vicon pose messages using ROS. To verify, open a new terminal window and run the following command:
 - `export ROS_MASTER_URI=http://10.42.0.100:11311`
-- `export ROS_IP=*YOUR_IP*`
- 
- Note that all ROS nodes should be connected to the `roscore` on the scoring computer, not on your Jetson. Now you should be able to subscribe to the Vicon pose messages using ROS. To verify, open a new terminal window and run the following command:
--  `rostopic echo /vicon/VICON_NAME/VICON_NAME`
- 
- where `VICON_NAME` will be provided by your TA. If you do not see any messages being printed, reach out to your TA.
+- `export ROS_IP=*YOUR_IP*
+-  `rostopic echo /vicon/ROB498_Drone/ROB498_Drone`
+ If you do not see any messages being printed, reach out to your TA. Note that you must run the first two `export` commands in the terminal every time you want to launch a ROS node. Moreover, all ROS nodes should be connected to the `roscore` on the scoring computer, not on your Jetson.
