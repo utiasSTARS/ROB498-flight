@@ -95,4 +95,5 @@ First, you need to connect your Jetson to our router. The SSID is `TP_LINK_ROB49
 - `export ROS_MASTER_URI=http://10.42.0.100:11311`
 - `export ROS_IP=*YOUR_IP*`
 -  `rostopic echo /vicon/ROB498_Drone/ROB498_Drone`
+ 
  If you do not see any messages being printed, reach out to your TA. Note that you must run the first two `export` commands in the terminal every time you want to launch a ROS node. Moreover, all ROS nodes should be connected to the `roscore` on the scoring computer, not on your Jetson.
