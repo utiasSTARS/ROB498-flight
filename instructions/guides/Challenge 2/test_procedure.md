@@ -17,5 +17,5 @@
 3. Once ready, the TA will instruct you to arm the drone as well as send the “launch” command to your drone. Your drone may take off autonomously or manually
 4. When you think your drone is ready for scoring, let the TA know and we will start collecting data. A “test” command will be sent to the drone
 5. Data collection will end after 30 seconds. The TA will instruct you to land the drone. Your drone may land autonomously or manually
-6. Flight data within the 30-second window will be saved and our scoring system will determine your score. You will receive the results in a PDF file. A [sample reuslt](https://github.com/utiasSTARS/ROB498-flight/blob/main/instructions/guides/Challenge%202/Sample_Results/sample_result_stationary_drone.pdf) for a stationary drone is provided for your reference.
+6. Flight data within the 30-second window will be saved and our scoring system will determine your score. You will receive the result (plots and numerical score) in a PDF file. A [sample result](https://github.com/utiasSTARS/ROB498-flight/blob/main/instructions/guides/Challenge%202/Sample_Results/sample_result_stationary_drone.pdf) for a stationary drone is provided for your reference.
 
