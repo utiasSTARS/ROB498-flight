@@ -34,14 +34,16 @@ def callback_abort(request):
 # Main communication node for ground control
 def comm_node():
     print('This is a dummy drone node to test communication with the ground control')
-    print('Do not change the node name and service topics! The TAs will test these service calls prior to flight')
+    print('node_name should be rob498_drone_TeamID. Service topics should follow the name convention below')
+    print('The TAs will test these service calls prior to flight')
     print('Your own code should be integrated into this node')
     
-    rospy.init_node('rob498_drone') 
-    srv_launch = rospy.Service('comm/launch', Empty, callback_launch)
-    srv_test = rospy.Service('comm/test', Empty, callback_test)
-    srv_land = rospy.Service('comm/land', Empty, callback_land)
-    srv_abort = rospy.Service('comm/abort', Empty, callback_abort)
+    node_name = 'rob498_drone_XX'
+    rospy.init_node(node_name) 
+    srv_launch = rospy.Service(node_name + '/comm/launch', Empty, callback_launch)
+    srv_test = rospy.Service(node_name + '/comm/test', Empty, callback_test)
+    srv_land = rospy.Service(node_name + '/comm/land', Empty, callback_land)
+    srv_abort = rospy.Service(node_name + '/comm/abort', Empty, callback_abort)
 
     # Your code goes below
 
