@@ -17,5 +17,5 @@
 3. Once ready, the TA will instruct you to arm the drone as well as send the “launch” command to your drone. Your drone may take off autonomously or manually
 4. When you think your drone is ready for scoring, let the TA know and we will start collecting data. A “test” command as well as the waypoints will be sent to the drone. Vicon pose streaming will be stopped for the Vicon-free test.
 5. Data collection will run for 120 seconds max. You could ask the TA to stop once your drone has visited all the waypoints. Your drone may land autonomously or manually
-6. Flight data will be saved and our scoring system will determine your score. You will receive the result (plots and numerical score) in a PDF file. A [sample result](https://github.com/utiasSTARS/ROB498-flight/blob/main/instructions/guides/Challenge%202/Sample_Results/sample_result_stationary_drone.pdf) is provided for your reference.
+6. Flight data will be saved and our scoring system will determine your score. You will receive the result (plots and numerical score) in a PDF file. A [sample result-coming soon!](https://github.com/utiasSTARS/ROB498-flight/blob/main/instructions/guides/Challenge%202/Sample_Results/sample_result_stationary_drone.pdf) is provided for your reference.
 
