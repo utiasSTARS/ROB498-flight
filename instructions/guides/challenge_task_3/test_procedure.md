@@ -10,6 +10,7 @@
 - `/rob498_drone_ID/comm/test`: once your drone has stabilized, the TA will send the command to the drone to indicate the start of the scoring segment. The waypoints will also be published at `/rob498_drone_ID/comm/waypoints` as `PoseArray` messages. Upon receiving the waypoints, the drone should visit each waypoint in order within the 120s horizon.
 
 3. All services will accept a `std_srvs::EmptyRequest` and return a `std_srvs::EmptyResponse`. We require all four services to be running for the challenge. An updated [python node](https://github.com/utiasSTARS/ROB498-flight/blob/main/instructions/guides/challenge_task_3/code/comm_node_skeleton.py) is provided for your reference. Note that you should not put any loops in the callback functions. The callbacks should just set some global flags and your main loop in the node is responsible for checking the state of the flags and execute the flight commands.
+4. An example waypoint subscriber is included in the above python script. The desired waypoints will be published repeatedly at the `/rob498_drone_ID/comm/waypoints` topic as `geometry_msgs::PoseArray` messages when the scoring phase starts.
 
 **Challenge 3 Testing Procedure**
 1. Make sure your drone is connected to the course wifi and you are able to `ping` the ground control server at 10.42.0.100 and receive the Vicon poses (at the `/vicon/ROB498_Drone/ROB498_Drone` topic as `geometry_msgs::TransformStamped` messages)
