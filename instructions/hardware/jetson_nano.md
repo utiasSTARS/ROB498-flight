@@ -1,3 +1,5 @@
+<span style="color:red">Modify for CubePilot Orange Cube+</span>.
+
 # Getting Started With Your Jetson Nano
 
 The NVIDIA Jetson Nano is a mini computer widely used amongst robotics enthusiasts. In this course, we will use the Jetson Nano as the computing unit for your drone, to complete a set of autonomous flight challenges. Before beginning, you should take a look at the official [NVIDIA Instructions](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit) that explain how to set up your device.
