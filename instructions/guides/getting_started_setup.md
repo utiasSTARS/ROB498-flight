@@ -4,7 +4,7 @@ Authors: Xuan Wang and Jonathan Kelly
 
 As your first challenge in the capstone course, each team will need to assemble your drone, configure it properly, and pass the "run up" demonstration to prove that your aircraft is **air-worthy**. The demostration (Challenge Task #1) will happen soon after the Feb. 7th class, where each team will chose a time slot to meet with TAs. During the "run up" demo, everything will happen on the ground; your team must follow and pass all the [checklist items for the course](https://q.utoronto.ca/courses/299314) and short interviews by the TAs (with some simple questions) to show that you have **fully understood** all the safety guidelines and pre-flight/post-flight procedures. **Prior to the demo, no team should install their propellers or fly their drone**. If the checklist test is passed and there is time left, the head TA will help your team carry out a quick test flight. This task might look simple, but it is the *most critical part* of succeding in later challenges (by ensuring a good foundation for safety).
 
-This manual will help you get started with the  core steps of assembling the hardware and configuring the basic software of the drone for this course. PX4 is the recommended open-source firmware for the Pixhawk 4 Mini flight controller. The Ardupilot firmware-GCS is also widely used, and you are free to try it as you wish. Students are not expected to write low-level drone control code since this complexity is beyond the undergraduate level (given the time available for the capstone). This is why the PX4 open-source firmware has been and is still being actively developed by thousands of outstanding engineers worldwide. We hope that your work in this course will also be able to contribute to the open-source community!
+This manual will help you get started with the  core steps of assembling the hardware and configuring the basic software of the drone for this course. PX4 is the recommended open-source firmware for the CubePilot's Orange Cube+  flight controller. The Ardupilot firmware-GCS is also widely used, and you are free to try it as you wish. Students are not expected to write low-level drone control code since this complexity is beyond the undergraduate level (given the time available for the capstone). This is why the PX4 open-source firmware has been and is still being actively developed by thousands of outstanding engineers worldwide. We hope that your work in this course will also be able to contribute to the open-source community!
 
 For this course, the **main reference is the [PX4 Autopilot fficial documentation](https://docs.px4.io/main/en/)** (many languages are available!). The documentation is quite comprehensive. As you might have noticed, you do not need to read everything. The point of these instructions are to help you get a head start.
 
@@ -18,26 +18,43 @@ You may want to start by assembling your [frame](https://rotorgeeks.com/download
 
 Within the kit, you will find that the PDB (power distribution board) is already soldered up with ESCs (Electric Speed Controller) and motors to save you time. Make sure the PDB is lifted up with the spacers so that it does not touch the carbon fiber frame. You are expected to check the correct avionics connections, referring to the **"Basic Assembly"** part of the PX4 document mentioned above.
 
-- Make sure the Pixhawk 4 "POWER" port is connected properly to the PDB (Power Distribution Board)
-- All four ESC connections to the Pixhawk for motor control (refer to the figure below) are connected
-- The RC (Remote control) receiver connected to the Pixhawk
-- The TeraRanger EVO 60m is connected to the pixhawk (with a cable in your kit)
+- Make sure the autopilo's "POWER" port is connected properly to the PDB (Power Distribution Board).
+- All four ESC connections to the Cube for motor control (refer to the figure below) are connected.
+- The RC (Remote control) receiver connected to the Cube.
+- The TeraRanger EVO 60m is connected to the Cube (with a cable in your kit)
   
 **Important Hints and Advice:**
 
-- To connect the RC receiver to Pixhawk, the wires that come with the receiver itself are incompatible and not useful. Please find the JST-GH 4-pin to Picoblade 5-pin wire that comes with the Pixhawk unit (in the antistatic bag). Although the RC receiver's connector is a Picoblade 6-pin, the wire can still work if you align the pinouts correctly. Be careful not to break the connectors.
+- When using the Orange Cube+ flight controller, the ESCs can be connected to the Cube in two ways. Using the flight management unit (FMU) main pulse-width-modulation (PWM) ports or the auxilary (AUX) ports. Note that the main PWM ports do not support Dshot protocol and might require ESC calibration. The AUX ports support Dshot protocol. 
 
-- It is recommended to learn to manage your team's own document repository and development logs as you proceed in the course. You will often refer to the ESC and motor numbering and rotation direction, as recognized by the flight controller. You should strictly follow the figure below when connecting ESCs to the Pixhawk, checking motor directions, and installing your propellers.
+<p align="center">
+ <img src="../images/cube_fmu_pwm.jpg" width = "300">
+</p>
 
+The above image shows the PWM main ports ( s + -) along with the RC IN port.
+
+<p align="center">
+ <img src="../images/cube_aux_port.png" width = "300">
+</p>
+
+The above image shows the aux ports.
+
+- To connect the RC receiver to Cube, the wires that come with the receiver itself are incompatible and not useful. Please find the JST-GH 4-pin to Servo lead 3-pin wire that is provided in your kit. Be careful not to break the connectors.
+
+- It is recommended to learn to manage your team's own document repository and development logs as you proceed in the course. You will often refer to the ESC and motor numbering and rotation direction, as recognized by the flight controller. You should strictly follow the figure below when connecting ESCs to the flight controller, checking motor directions, and installing your propellers.
+
+<p align="center">
 <img src = "../images/quadrotorx.svg" width = "300">
+</p>
 
 ## Firmware/Ground Station Setup
 
-In practice, the correct avionic connections will not fully ensure that the motors will work properly. You also need to set up the firmware of the Pixhawk 4. All the settings and parameters can be modified with the ground control station (GCS) software. It is recommended to use QGroundControl (referred to as **QGC** in the following sections), which supports most OSes. Please refer to the **"Basic Configuration"** part of the PX4 documentation.
+In practice, the correct avionic connections will not fully ensure that the motors will work properly. You also need to set up the firmware of the autopilot. All the settings and parameters can be modified with the ground control station (GCS) software. It is recommended to use QGroundControl (referred to as **QGC** in the following sections), which supports most OSes. Please refer to the **"Basic Configuration"** part of the PX4 documentation.
 
+<p align="center">
 <img src = "../images/QGC.png">
-
-First, open QGC and click the logo on the top left to enter the vehicle setup page. Update the firmware to the latest version as instructed on the screen, and make sure the airframe is selected as **"Lumenier 5 inch (the one that is below the generic quadcopter)"**. Every time you plug in the Pixhawk using the micro USB cable, QGC should auto-detect it and connect automatically.
+</p>
+First, open QGC and click the logo on the top left to enter the vehicle setup page. Update the firmware to the latest version as instructed on the screen, and make sure the airframe is selected as **"Lumenier 5 inch (the one that is below the generic quadcopter)"**. Every time you plug in the flight controller using the micro USB cable, QGC should auto-detect it and connect automatically (it might require multiple attempts in some cases).
 
 If you go to vehicle setup after the firmware update, you will see a list of items to do on the left of the screen. Please check in sequence and configure everything accordingly. The key settings are:
 
@@ -49,7 +66,7 @@ If you go to vehicle setup after the firmware update, you will see a list of ite
 - Safety (Low Battery -> Land; RC Loss -> Kill)
 - Parameters (much more flexible settings!)
 
-Try not to modify the PID parameters, which can cause severe instability. For motor testing, you can use a wide strip of paper/plastic to touch the top of the motor to reveal the rotation direction. In any case, if the motor direction is incorrect, use the MAVLink command as noted here https://docs.px4.io/v1.12/en/peripherals/dshot.html#commands to change the rotation direction.
+The Cube is sensitive to vibrations and hence some PID tuning might be required. For motor testing, you can use a wide strip of paper/plastic to touch the top of the motor to reveal the rotation direction. In any case, if the motor direction is incorrect, use the MAVLink command as noted here https://docs.px4.io/v1.12/en/peripherals/dshot.html#commands to change the rotation direction.
 
 ## Radio Setup
 
@@ -62,7 +79,9 @@ To bind your Taranis with the RC receiver (the ARCHER R4), carefully follow the 
 
 Controls on the Taranis are generally mapped to the "American Hand" as shown in the figure below. If you would like to control your drone in another fashion, please notify the TAs and the professor. Remember to perform calibration when you first set up and ensure that the channel mappings are correct (for example, you do not want the moving throttle on the RC to appear to be pitch in the flight controller!). If the mapping is incorrect, you can change the channel setting in Taranis.
 
+<p align="center">
 <img src = "../images/rc_basic.png" width = "500">
+</p>
 
 ## Flight Mode Setup
 
@@ -76,7 +95,9 @@ In the Flight Mode section in QGC, you can assign channels for the flight mode s
 
 To switch the flight mode, you must first set up the Taranis to map between the hardware switches and the wireless channels. These features can be found by first pressing [MENU] and then [PAGE] to enter the detailed model settings. Short-pressing the [PAGE] button will loop through the pages (long press goes back, fun fact: Xuan has been using the Taranis for four years and just found this recently :)) until page 6/12, the MIXES, where you will find all the empty channels to be allocated from channel 5. The modified profile should look like this:
 
+<p align="center">
 <img src = "../images/channels.jpg" width = "500">
+</p>
 
 Once this is done, go back to QGC; you can simply select among channels to map them to the functions accordingly. If your RC connection is active, you will be able to see the function name highlighted when you flip the switches. 
 
@@ -84,9 +105,11 @@ Once this is done, go back to QGC; you can simply select among channels to map t
 
 If you have done everything correctly and have an active RC connection, you will be able to see this on the top left corner of the main page:
 
+<p align="center">
 <img src = "../images/RTF.png" width = "250">
+</p>
 
-However, this only means that your Pixhawk 4 is ready to Arm - your drone might still not be ready to fly. Before you can call the drone air-worthy, please *carefully* check the following:
+However, this only means that your autopilot is ready to Arm - your drone might still not be ready to fly. Before you can call the drone air-worthy, please *carefully* check the following:
 
 - Can I arm the drone, switch to whatever flight mode I like and then **kill** it whenever I want?
 - Are the motors rotating in the correct directions?
@@ -94,8 +117,9 @@ However, this only means that your Pixhawk 4 is ready to Arm - your drone might 
 
 The ready-to-test drone should look like this, with all the components installed tightly to the frame.
 
-<img src = "../images/finished_top.jpg" width = "600">
-<img src = "../images/finished_side.jpg" width = "600">
+<p align="center">
+<img src = "../images/quad_cube_no_prop.png" width = "600">
+</p>
 
 Finally and most importantly, we cannot emphasize the importance of **the safety checklist and safety being at the top of your mind**, always. Please make sure all your team members fully understand the operation of the drone, and **do many rehearsals** before the demo (we will pick a random person as the "pilot" to hold the Taranis!). The detailed grading policy will be posted shortly in another document.  
 

@@ -1,5 +1,3 @@
-<span style="color:red">Modify for CubePilot Orange Cube+</span>.
-
 # Getting Started With Your Jetson Nano
 
 The NVIDIA Jetson Nano is a mini computer widely used amongst robotics enthusiasts. In this course, we will use the Jetson Nano as the computing unit for your drone, to complete a set of autonomous flight challenges. Before beginning, you should take a look at the official [NVIDIA Instructions](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit) that explain how to set up your device.
@@ -23,51 +21,60 @@ ROS is a set of libraries and tools that help people build robot software. If yo
 
 ## MAVROS
 
-MAVROS is a ROS package that provides a wrapper for the MAVLink protocol. We use it as a bridge between the Jetson Nano and other devices such as the Pixhawk 4 Mini flight controller.
+MAVROS is a ROS package that provides a wrapper for the MAVLink protocol. We use it as a bridge between the Jetson Nano and other devices such as the CubePilot Orange Cube+ flight controller.
 
 ## Intel Realsense VIO
 
 The Intel Realsense T265 Tracking Camera provides a fully self-contained visual-interial odometry capability to your drone. We will use the estimated pose from the T265 camera to localize the drone when flying. The pre-installed [Auterion VIO](https://github.com/Auterion/VIO) package provides an easy way to communicate with the camera and obtain the estimated pose via MAVROS.
 
-# Communication Between the Jetson Nano and Pixhawk 4 Mini
+# Communication Between the Jetson Nano and the flight controller
 
-Setting up communications between the Jetson Nano in the Pixhawk requires two steps: first, wiring the two devices together, and second, configuring the appropriate communications parameters.
+Setting up communication between the Jetson Nano in the flight controller requires two steps: first, wiring the two devices together, and second, configuring the appropriate communications parameters.
 
-## Wiring Between the Jetson Nano and Pixhawk 4 Mini
+## Wiring Between the Jetson Nano and Cube
 
-The Pixhawk 4 Mini's **Telem 1** port can be connected to Jetson Nano's **GPIO** pins using the JST-GH-to-Dupont connector provided in your kit. This [video](https://www.youtube.com/watch?v=nIuoCYauW3s) provides instructions on how to connect the pins. Since the jumper cable is provided, you do not need to do any soldering. In summary, you will:
+The Cube's **Telem 2** port can be connected to Jetson Nano's **GPIO** pins using the JST-GH-to-Dupont connector provided in your kit. This [video](https://www.youtube.com/watch?v=nIuoCYauW3s) provides instructions on how to connect the pins. Since the jumper cable is provided, you do not need to do any soldering. In summary, you will:
 
-- Connect **Pin 2** of **TELEM1** (TX/out) on Pixhawk 4 Mini to **Pin 10** of **GPIO** (UART_RX/in, /dev/ttyTHS1) on Jetson Nano
-- Connect **Pin 3** of **TELEM1** (RX/in) on Pixhawk 4 Mini to **Pin 8** of **GPIO** (UART_TX/out, /dev/ttyTHS1) on Jetson Nano
-- Connect **Pin 6** of **TELEM1** (Ground) on Pixhawk 4 Mini to **Pin 9** of **GPIO** (Ground) on Jetson Nano
+- Connect **Pin 2** of **TELEM2** (TX/out) on Cube+ to **Pin 10** of **GPIO** (UART_RX/in, /dev/ttyTHS1) on Jetson Nano
+- Connect **Pin 3** of **TELEM2** (RX/in) on Cube+ to **Pin 8** of **GPIO** (UART_TX/out, /dev/ttyTHS1) on Jetson Nano
+- Connect **Pin 6** of **TELEM2** (Ground) on Cube+ to **Pin 9** of **GPIO** (Ground) on Jetson Nano
 
-## Configure Pixhawk 4 Mini
+<p align="center">
+<img src="../images/cube_telem2.png" width="300">
+</p>
 
-Before the two devices can communicate with each other, we need to set some parameters on Pixhawk 4 Mini. Download and install **QGroundControl (QGC)** on your host computer by following the instructions [here](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html). Connect the Pixhawk 4 Mini to the computer and once it shows up in QGC, set the following parameters ([tutorial](https://docs.qgroundcontrol.com/master/en/SetupView/Parameters.html)):
+The above figure shows the JST-GH cable connected to TELEM2 port of the flight controller.
 
-- *SER_TEL1_BAUD* to 921600
-- *MAV_0_RATE* to 921600
+## Configure Orange Cube+
+
+Before the two devices can communicate with each other, we need to set some parameters on Orange Cube+. Download and install **QGroundControl (QGC)** on your host computer by following the instructions [here](https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.html). Connect the Orange Cube+ to the computer and once it shows up in QGC, set the following parameters ([tutorial](https://docs.qgroundcontrol.com/master/en/SetupView/Parameters.html)):
+
+- MAV_1_CONFIG -> TELEM2
+
+Reboot the flight controller. Next, verify that the following parameter is set accordingly:
+
+- SER_TEL2_BAUD to 921600
 
 You may also [calibrate the sensors](https://docs.qgroundcontrol.com/master/en/SetupView/sensors_px4.html) in QGC.
 
 ## Configure the Jetson Nano
 
-The Jetson Nano will communicate with the Pixhawk 4 Mini through the `/dev/ttyTHS1` device (i.e.,a serial port) and we need to grant read and write permissions. In a terminal on Jetson Nano, execute the following command:
+The Jetson Nano will communicate with the Cube through the `/dev/ttyTHS1` device (i.e.,a serial port) and we need to grant read and write permissions. In a terminal on Jetson Nano, execute the following command:
 
 `sudo chmod 666 /dev/ttyTHS1`
 
-## Test the Connection - Get Your Pose from the Pixhawk!
+## Test the Connection - Get Your Pose from the Cube!
 
 Now the two devices are ready to talk to each other! To test the comms, we can run the following commands on Jetson:
 
 - In the first terminal, launch ROS by running `roscore`
-- In the second terminal, launch MAVROS by running `roslaunch mavros px4.launch`. The launch file already contains the necessary modifications to communicate with the Pixhawk
+- In the second terminal, launch MAVROS by running `roslaunch mavros px4.launch`. The launch file already contains the necessary modifications to communicate with the Cube+.
 - MAVROS by default publishes information at a very low rate, or not publishes them at all. We can enable data streams, and set the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 Hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry. 
 - To verify, we can check the publishing rate by running `rostopic hz /mavros/odometry/in` in the fourth terminal. You can also use RViz to visualize the vehicle pose.
 
 # Use Realsense T265 Tracking Camera For Pose Estimation
 
-The Pixhawk Mini only uses the internal IMU to estimate its pose, which could drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. First, you need to connect the camera to the Jetson using the provided USB3.0 cable. The Auterion VIO package is installed at `~/thirdparty/vio_ws`. Source this ROS workspace and run `roslaunch px4_realsense_bridge bridge_mavros.launch` to launch the bridge. The estimated poses should be published under the `/mavros/odometry/out` topic.
+In the absence of GPS, the Cube uses the internal IMU to estimate its pose, which could drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. First, you need to connect the camera to the Jetson using the provided USB3.0 cable. The Auterion VIO package is installed at `~/thirdparty/vio_ws`. Source this ROS workspace and run `roslaunch px4_realsense_bridge bridge_mavros.launch` to launch the bridge. The estimated poses should be published under the `/mavros/odometry/out` topic.
 
 # Wifi
 
