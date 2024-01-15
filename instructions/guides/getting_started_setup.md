@@ -18,7 +18,7 @@ You may want to start by assembling your [frame](https://rotorgeeks.com/download
 
 Within the kit, you will find that the PDB (power distribution board) is already soldered up with ESCs (Electric Speed Controller) and motors to save you time. Make sure the PDB is lifted up with the spacers so that it does not touch the carbon fiber frame. You are expected to check the correct avionics connections, referring to the **"Basic Assembly"** part of the PX4 document mentioned above.
 
-- Make sure the autopilo's "POWER" port is connected properly to the PDB (Power Distribution Board).
+- Make sure the autopilot's "POWER" port is connected properly to the PDB (Power Distribution Board).
 - All four ESC connections to the Cube for motor control (refer to the figure below) are connected.
 - The RC (Remote control) receiver connected to the Cube.
 - The TeraRanger EVO 60m is connected to the Cube (with a cable in your kit)
@@ -39,7 +39,7 @@ The above image shows the PWM main ports ( s + -) along with the RC IN port.
 
 The above image shows the aux ports.
 
-- To connect the RC receiver to Cube, the wires that come with the receiver itself are incompatible and not useful. Please find the JST-GH 4-pin to Servo lead 3-pin wire that is provided in your kit. Be careful not to break the connectors.
+- To connect the RC receiver to Cube, the wires that come with the receiver itself are incompatible and not useful. Please use the 5-pin Picoblade to 3-pin Servo lead wire that is provided in your kit. Be careful not to break the connectors.
 
 - It is recommended to learn to manage your team's own document repository and development logs as you proceed in the course. You will often refer to the ESC and motor numbering and rotation direction, as recognized by the flight controller. You should strictly follow the figure below when connecting ESCs to the flight controller, checking motor directions, and installing your propellers.
 
