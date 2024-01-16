@@ -6,7 +6,7 @@ As your first challenge in the capstone course, each team will need to assemble 
 
 This manual will help you get started with the  core steps of assembling the hardware and configuring the basic software of the drone for this course. PX4 is the recommended open-source firmware for the CubePilot's Orange Cube+  flight controller. The Ardupilot firmware-GCS is also widely used, and you are free to try it as you wish. Students are not expected to write low-level drone control code since this complexity is beyond the undergraduate level (given the time available for the capstone). This is why the PX4 open-source firmware has been and is still being actively developed by thousands of outstanding engineers worldwide. We hope that your work in this course will also be able to contribute to the open-source community!
 
-For this course, the **main reference is the [PX4 Autopilot fficial documentation](https://docs.px4.io/main/en/)** (many languages are available!). The documentation is quite comprehensive. As you might have noticed, you do not need to read everything. The point of these instructions are to help you get a head start.
+For this course, the **main reference is the [PX4 Autopilot official documentation](https://docs.px4.io/main/en/)** (many languages are available!). The documentation is quite comprehensive. As you might have noticed, you do not need to read everything. The point of these instructions are to help you get a head start.
 
 <img src = "../images/px4-logo.svg" width = "200">
 
@@ -22,16 +22,17 @@ Within the kit, you will find that the PDB (power distribution board) is already
 - All four ESC connections to the Cube for motor control (refer to the figure below) are connected.
 - The RC (Remote control) receiver connected to the Cube.
 - The TeraRanger EVO 60m is connected to the Cube (with a cable in your kit)
+
+
+It is highly recommended to connect the buzzer that is included in your kit. The buzzer provides valuable acoustic feedback about critical events such as arming, disarming, low battery etc. The buzzer can be connected to the relevant port on the cube:
+
+<p align="center">
+    <img src="../images/cube_buzzer.jpg" width=400>
+</p>
   
 **Important Hints and Advice:**
 
-- When using the Orange Cube+ flight controller, the ESCs can be connected to the Cube in two ways. Using the flight management unit (FMU) main pulse-width-modulation (PWM) ports or the auxilary (AUX) ports. Note that the main PWM ports do not support Dshot protocol and might require ESC calibration. The AUX ports support Dshot protocol. 
-
-<p align="center">
- <img src="../images/cube_fmu_pwm.jpg" width = "300">
-</p>
-
-The above image shows the PWM main ports ( s + -) along with the RC IN port.
+- When using the Orange Cube+ flight controller, the ESCs can be connected to the Cube in two ways. Using the flight management unit (FMU) main pulse-width-modulation (PWM) ports or the auxilary (AUX) ports. Note that the main PWM ports do not support Dshot protocol and might require ESC calibration. The AUX ports support Dshot protocol. The above image shows the PWM main ports ( s + -) along with the RC IN port.
 
 <p align="center">
  <img src="../images/cube_aux_port.png" width = "300">
