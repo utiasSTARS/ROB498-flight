@@ -66,22 +66,38 @@ Note the address for these UART pins on the Jetson header board is listed as ``/
 
 The following sections mainly concern parameters that can be found in the **Parameters** section of QGroundControl (**Vehicle Setup/Parameters**). You can use the search bar at the top to quickly find these parameters and keep track of what has changed using the "Show modified only" search option. Modified parameters will be highlighted in red and many will have been set by the actions performed in the **Drone Setup with QGroundControl** section of this guide. Changing some parameters will require a reboot of the Cube, which can be accomplished by disconnecting it from power and from the setup computer. 
 
+### PID and filter tuning
+The Cube+ comes with vibration isolated IMUs. Nonetheless, it is sensitive to vibrations, as such it is recommended to soft mount the flight controller. Even with a soft mount it is necessary to modify the stock PID values for stable flight. The following parameters have worked well:
+
+```
+- MC_ROLLRATE_D -> 0.0001
+- MC_ROLLRATE_P -> 0.08
+- MC_PITCHRATE_D -> 0.0001
+- MC_PITCHRATE_P -> 0.08
+- IMU_DGYRO_CUTOFF -> 95
+- IMU_GYRO_CUTOFF -> 50
+```
+
+The quadrotor response might seem sluggish with these PID values. You can tune the PID values for a more crisp response but please do so by changing the values in **very** small increments. 
+
+**NOTE**: *PID tuning can be quiet challenging and must be avoided unless  necessary.*
+
 ### Onboard Jetson Communication
 
 Communication with the Jetson Nano is through the GPIO pins and must be configured by changing a few parameters. First, enable Mavlink communication on TELEM2:
 
  - MAV_1_CONFIG      -> TELEM2
 
+Reboot the flight controller. Next, you must configure the Cube to send and receive MAVLink messages at an acceptable rate. This can be done by setting the following parameters:
+
+- MAV_1_MODE        -> Onboard
+- SER_TEL2_BAUD     -> 921600 8N1
+
 <p align="center">
     <img src = "../images/cube_telem2.png" width = "300">
 </p>
 
 The above figure shows JSG-GH cable connected to TELEM2 port of the cube.
-
-Reboot the flight controller. Next, you must configure the Cube to send and receive MAVLink messages at an acceptable rate. This can be done by setting the following parameters:
-
-- MAV_1_MODE        -> Onboard
-- SER_TEL2_BAUD     -> 921600 8N1
 
 
 ### Offboard Position Estimation

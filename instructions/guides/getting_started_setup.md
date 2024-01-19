@@ -29,16 +29,24 @@ It is highly recommended to connect the buzzer that is included in your kit. The
 <p align="center">
     <img src="../images/cube_buzzer.jpg" width=400>
 </p>
-  
-**Important Hints and Advice:**
 
-- When using the Orange Cube+ flight controller, the ESCs can be connected to the Cube in two ways. Using the flight management unit (FMU) main pulse-width-modulation (PWM) ports or the auxilary (AUX) ports. Note that the main PWM ports do not support Dshot protocol and might require ESC calibration. The AUX ports support Dshot protocol. The above image shows the PWM main ports ( s + -) along with the RC IN port.
+### ESC interface to flight controller
+
+- With the Orange Cube+ flight controller, the ESCs can be connected to the Cube in two ways. Using the flight management unit (FMU) main pulse-width-modulation (PWM) ports or the auxilary (AUX) ports. Note that the main PWM ports do not support Dshot protocol and might require ESC calibration. The AUX ports support Dshot protocol. The image above shows the PWM main ports ( s + -) and the image below shows the aux ports.
 
 <p align="center">
  <img src="../images/cube_aux_port.png" width = "300">
 </p>
 
-The above image shows the aux ports.
+* It is highly recommended to use Dshot protocol for communicating with ESCs. To the connect the ESCs to aux port, you can repurpose the servo connectors by combing the signal (white) wires from two ESCs into one connector and their corresponding ground (black) wires into another connector as is down below.
+
+
+<p align="center">
+    <img src = "../images/cube_orientation.png" width = "300">
+</p>
+
+**Important Hints and Advice:**
+
 
 - To connect the RC receiver to Cube, the wires that come with the receiver itself are incompatible and not useful. Please use the 5-pin Picoblade to 3-pin Servo lead wire that is provided in your kit. Be careful not to break the connectors.
 
