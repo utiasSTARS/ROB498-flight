@@ -8,16 +8,6 @@ cd /usr/bin
 sudo ./tegrastats
 ```
 
-Create a catkin workspace:
-```bash
-mkdir -p ~/catkin_ws/src && cd ~/catkin_ws
-catkin init
-cd src
-git clone git@github.com:git@github.com:manx52/ROB498.git
-
-```
-
-
 #### Install necessary packages
 ```bash
 sudo apt-get install apt-utils python3-pip
