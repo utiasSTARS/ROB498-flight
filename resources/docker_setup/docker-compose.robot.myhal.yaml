@@ -1,0 +1,55 @@
+version: "3.3"
+
+services:
+  drone:
+    network_mode: host
+    extends:
+      file: docker-compose.yaml
+      service: drone
+    image: utrarobosoccer/rob498:arm64_team7
+    build:
+      context: .
+      target: builder
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+        - USER=${USER}
+        - BASE_IMAGE=arm64v8/ros:noetic-robot
+        - ARCHITECTURE=sbsa
+      cache_from:
+        - utrarobosoccer/rob498:arm64_team7
+    volumes:
+      - /usr/lib/aarch64-linux-gnu/tegra:/usr/lib/aarch64-linux-gnu/tegra
+      - /usr/local/cuda:/usr/local/cuda
+      - /usr/local/cuda-10:/usr/local/cuda-10
+      - /usr/local/cuda-10.2:/usr/local/cuda-10.2
+      - /etc/alternatives/cuda:/etc/alternatives/cuda
+      - /usr/lib/aarch64-linux-gnu/libcudnn.so:/usr/lib/aarch64-linux-gnu/libcudnn.so
+      - /usr/lib/aarch64-linux-gnu/libcudnn.so.8:/usr/lib/aarch64-linux-gnu/libcudnn.so.8
+      - /usr/lib/aarch64-linux-gnu/libcudnn.so.8.2.1:/usr/lib/aarch64-linux-gnu/libcudnn.so.8.2.1
+      - /usr/lib/aarch64-linux-gnu/libcudnn_adv_infer.so.8.2.1:/usr/lib/aarch64-linux-gnu/libcudnn_adv_infer.so.8.2.1
+      - /usr/lib/aarch64-linux-gnu/libcudnn_adv_train.so.8.2.1:/usr/lib/aarch64-linux-gnu/libcudnn_adv_train.so.8.2.1
+      - /usr/lib/aarch64-linux-gnu/libcudnn_cnn_infer.so.8.2.1:/usr/lib/aarch64-linux-gnu/libcudnn_cnn_infer.so.8.2.1
+      - /usr/lib/aarch64-linux-gnu/libcudnn_cnn_train.so.8.2.1:/usr/lib/aarch64-linux-gnu/libcudnn_cnn_train.so.8.2.1
+      - /usr/lib/aarch64-linux-gnu/libcudnn_ops_infer.so.8.2.1:/usr/lib/aarch64-linux-gnu/libcudnn_ops_infer.so.8.2.1
+      - /usr/lib/aarch64-linux-gnu/libcudnn_ops_train.so.8.2.1:/usr/lib/aarch64-linux-gnu/libcudnn_ops_train.so.8.2.1
+      - /usr/lib/aarch64-linux-gnu/libcudnn_adv_infer.so.8:/usr/lib/aarch64-linux-gnu/libcudnn_adv_infer.so.8
+      - /usr/lib/aarch64-linux-gnu/libcudnn_adv_train.so.8:/usr/lib/aarch64-linux-gnu/libcudnn_adv_train.so.8
+      - /usr/lib/aarch64-linux-gnu/libcudnn_cnn_infer.so.8:/usr/lib/aarch64-linux-gnu/libcudnn_cnn_infer.so.8
+      - /usr/lib/aarch64-linux-gnu/libcudnn_cnn_train.so.8:/usr/lib/aarch64-linux-gnu/libcudnn_cnn_train.so.8
+      - /usr/lib/aarch64-linux-gnu/libcudnn_ops_infer.so.8:/usr/lib/aarch64-linux-gnu/libcudnn_ops_infer.so.8
+      - /usr/lib/aarch64-linux-gnu/libcudnn_ops_train.so.8:/usr/lib/aarch64-linux-gnu/libcudnn_ops_train.so.8
+      - /usr/lib/aarch64-linux-gnu/libcudnn_static.a:/usr/lib/aarch64-linux-gnu/libcudnn_static.a
+      - /usr/lib/aarch64-linux-gnu/libcudnn_static_v8.a:/usr/lib/aarch64-linux-gnu/libcudnn_static_v8.a
+      - /dev:/dev
+      - /tmp/argus_socket:/tmp/argus_socket
+    device_cgroup_rules:
+      - 'c 81:* rmw'
+      - 'c 189:* rmw'
+    # Command that runs when docker-compose pull is executed
+    command:
+      /bin/bash -c "source ~/catkin_ws/devel/setup.bash && export ROS_MASTER_URI=http://10.42.0.100:11311 && export ROS_IP=10.42.0.107  && roslaunch drone drone.launch || sleep infinity"
+    environment:
+      PYTHONUNBUFFERED: 1
+      SIM: "false"
+      CHALLENGE4: "true"
+      DOCKER_RUN: "true"

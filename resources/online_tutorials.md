@@ -10,3 +10,5 @@ We're collecting useful videos and other tutorial resources that are avaiable to
 ## Tutorial Pages
 
 ## Other Resources
+
+- [Dockerfile setup](docker_setup/README.md) - This documentation was provided by Jonathan Spraggett and outlines the setup for running ROS Noetic on Ubuntu 20.04 through a docker container.

@@ -1,0 +1,65 @@
+version: "3.3"
+
+# Instructions
+# https://github.com/utra-robosoccer/soccerbot/wiki/Docker
+
+x-gpu: &gpu
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu, compute, utility, graphics]
+
+x-rob498: &rob498 #  <<: *gpu
+  image: utrarobosoccer/rob498:team_7
+  privileged: true
+  user: "1000"
+  build:
+    context: .
+    target: builder
+    args:
+      - BUILDKIT_INLINE_CACHE=1
+      - USER=${USER}
+    cache_from:
+      - utrarobosoccer/rob498:team_7
+  cap_add:
+    - SYS_PTRACE
+    - SYS_NICE
+  pid: "host"
+  security_opt:
+    - seccomp:unconfined
+  stdin_open: true
+  tty: true
+  # Command that runs when docker-compose up is executed
+  command:
+    /bin/bash -c "source ~/catkin_ws/devel/setup.bash  && roslaunch drone drone.launch || sleep infinity"
+  volumes:
+    - .:/home/$USER/catkin_ws/src/ROB498
+    - .:/home/drone/catkin_ws/src/ROB498
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    - /dev/dri:/dev/dri:rw
+    - /dev/snd:/dev/snd:rw
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /dev:/dev
+  device_cgroup_rules:
+    - 'c 81:* rmw'
+    - 'c 189:* rmw'
+
+services:
+  drone:
+    <<: *rob498
+    network_mode: host
+    command:
+     /bin/bash -c "source ~/catkin_ws/devel/setup.bash  && roslaunch drone drone.launch || sleep infinity"
+    # Environmental variables passed into docker
+    environment:
+      PYTHONUNBUFFERED: 1
+      DISPLAY: unix$DISPLAY
+      XDG_RUNTIME_DIR: $XDG_RUNTIME_DIR
+      SIM: "true"
+      CHALLENGE4: "true"
+      DOCKER_RUN: "true"
+
+

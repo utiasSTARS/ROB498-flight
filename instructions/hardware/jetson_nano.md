@@ -92,8 +92,6 @@ NVIDIA currently supports Ubuntu 18.04 on the Jetson Nano. The compatible ROS ve
 
 Thankfully, EngSci Robo Jonathan Spraggett has come to the rescue by providing an updated Docker container (image) that is set up to run Ubuntu 20.04 and ROS Noetic Ninjemys! The container supports access to the Jetson CUDA cores, too!
 
-You can find Jonathan's instructions and support code on GitHub [here](https://github.com/manx52/ROB498), and the Docker image on DockerHub [here](https://hub.docker.com/r/utrarobosoccer/rob498).
-
 # Receiving Vicon Poses via ROS Using Wifi
 
 Vicon is a high precision tracking system that can provide real-time pose estimate to the drone during flight. We have step up the infrastructure so your Jetson Nano can access data from the Vicon sysetm using onboard Wifi in the format of ROS messages. This section provides the instruction on how to configure your Jetson in order to join the ROS network.
