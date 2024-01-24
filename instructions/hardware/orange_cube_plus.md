@@ -146,7 +146,7 @@ If you want the range sensor to be the source of height information then set the
 
 ## Battery setup
 
-The flight controller has an internal sensor to monitor and report the battery status. Since, the sensor needs to operate across a range of voltages, calibration to your specific battery type may be needed. For the LiPo batteries used in this course, the following steps provide instructions to calibrate the battery monitor.
+The flight controller has an internal sensor to monitor and report the battery status. Since, the sensor needs to operate across a range of voltages, calibration to your specific battery type may be needed. The following steps provide instructions to calibrate the battery monitor.
 
 * Connect the flight controller to QGroundControl.
 * Navigate to the "Power" section. It should look something like below:
@@ -162,7 +162,7 @@ Full voltage -> 4.20
 Empty voltage -> 3.5
 ```
 
-* Next, measure and record the voltage of your LiPo reported by an external device such as a multimeter, LiPo checker, or the LiPo charger.
+* Next, measure and record the voltage of your LiPo using a multimeter, a LiPo checker, or the LiPo charger.
 
 *  Click `Calculate`` next to the Voltage divider field. 
 
@@ -177,7 +177,7 @@ Empty voltage -> 3.5
 
 A similar process can be followed to calibrate the amperage.
 
-Once calibration is done, confirm that the battery voltage reported by QGroundControl in the main page is accurate. For instance, a fully charged LiPo (`16.8v`) the main page of QGroundControl should read as below:
+Once calibration is done, confirm that the battery voltage reported by QGroundControl in the main page is accurate. For instance, for a fully charged LiPo (`16.8v`), the main page of QGroundControl should read as below:
 
 <p align="center">
 <img src="../images/full_battery.png" width="400">
