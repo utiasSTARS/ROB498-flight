@@ -144,6 +144,51 @@ If you want the range sensor to be the source of height information then set the
 
 - EKF2_HGT_REF -> Range sensor
 
+## Battery setup
+
+The flight controller has an internal sensor to monitor and report the battery status. Since, the sensor needs to operate across a range of voltages, calibration to your specific battery type may be needed. For the LiPo batteries used in this course, the following steps provide instructions to calibrate the battery monitor.
+
+* Connect the flight controller to QGroundControl.
+* Navigate to the "Power" section. It should look something like below:
+
+<p align="center">
+<img src="../images/battery_setup.png" width = "600">
+</p>
+
+* Since we are using a 4-cell LiPo battery, the following parameters need to be set:
+```
+Number of cells -> 4
+Full voltage -> 4.20
+Empty voltage -> 3.5
+```
+
+* Next, measure and record the voltage of your LiPo reported by an external device such as a multimeter, LiPo checker, or the LiPo charger.
+
+*  Click `Calculate`` next to the Voltage divider field. 
+
+<p align="center">
+<img src="../images/voltage_divider.png" width="400">
+</p>
+
+* On the prompt that appears:
+    * Enter the measured voltage (recorded using multimeter).
+    * Click Calculate to generate a new voltage-divider value.
+    * Click Close to save the value into the main form.
+
+A similar process can be followed to calibrate the amperage.
+
+Once calibration is done, confirm that the battery voltage reported by QGroundControl in the main page is accurate. For instance, a fully charged LiPo (`16.8v`) the main page of QGroundControl should read as below:
+
+<p align="center">
+<img src="../images/full_battery.png" width="400">
+</p>
+
+Hovering over the battery icon will show the voltage as measured by the onboard sensor.
+
+It is encouraged to calibrate voltage as the buzzer will notify when the battery is low and can help avoid any potential problems.
+
+More information can be found here: https://docs.px4.io/main/en/config/battery.html#basic_settings.
+
 ## More Information
 
 More information about the PX4-Autopilot is avaiable in the official Getting Started guide:
