@@ -149,11 +149,19 @@ If you want the range sensor to be the source of height information then set the
 The flight controller has an internal sensor to monitor and report the battery status. Since, the sensor needs to operate across a range of voltages, calibration to your specific battery type may be needed. The following steps provide instructions to calibrate the battery monitor.
 
 * Connect the flight controller to QGroundControl.
-* Navigate to the "Power" section. It should look something like below:
+* Navigate to the "Power" section. It should look something like below
 
 <p align="center">
 <img src="../images/battery_setup.png" width = "600">
 </p>
+
+* If the power cord is connect as below, then set battery 1 source to `Power Module`. 
+
+<p align="center">
+    <img src = "../images/cube_orientation.png" width = "150">
+</p>
+
+
 
 * Since we are using a 4-cell LiPo battery, the following parameters need to be set:
 ```
