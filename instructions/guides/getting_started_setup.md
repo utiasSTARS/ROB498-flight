@@ -94,7 +94,7 @@ Controls on the Taranis are generally mapped to the "American Hand" as shown in 
 
 ## Flight Mode Setup
 
-In the Flight Mode section in QGC, you can assign channels for the flight mode switch, arm switch, and **emergency kill switch**. The suggested channel/switch mapping is listed in the table below. The flight modes used in this course are 'Stabilized', 'Altitude', and 'Offboard'. They are explained in the PX4 documentation "Flying" section. Please read this carefully and make sure you understand both the behaviour and the sensors involved. 
+In the Flight Mode section in QGC, you can assign channels for the flight mode switch, arm switch, and **emergency kill switch**. The suggested channel/switch mapping is listed in the table below. The flight modes used in this course are 'Stabilized', 'Altitude', and 'Offboard'. They are explained in the PX4 documentation "Flying" section. Please read this carefully and make sure you understand both the behavior and the sensors involved. 
 
 | Switch Name (Function) | Hardware Switch | Channel |
 |------------------------|-----------------|---------|
@@ -120,7 +120,7 @@ If you have done everything correctly and have an active RC connection, you will
 
 However, this only means that your autopilot is ready to Arm - your drone might still not be ready to fly. Before you can call the drone air-worthy, please *carefully* check the following:
 
-- Can I arm the drone, switch to whatever flight mode I like and then **kill** it whenever I want?
+- Can I arm the drone, switch to whatever flight mode I like, and then **kill** it whenever I want?
 - Are the motors rotating in the correct directions?
 - Are all the components installed tightly and in proper positions, with all wires secured?
 
@@ -133,3 +133,6 @@ The ready-to-test drone should look like this, with all the components installed
 Finally and most importantly, we cannot emphasize the importance of **the safety checklist and safety being at the top of your mind**, always. Please make sure all your team members fully understand the operation of the drone, and **do many rehearsals** before the demo (we will pick a random person as the "pilot" to hold the Taranis!). The detailed grading policy will be posted shortly in another document.  
 
 If you have more questions, feel free to consult Google, post on the discussion boards, or ask the TAs/professor. You will have a fairly long time for this task. Thus, try to avoid squeezing everything right up to the deadline, since there is a considerable amount of information to digest. If you finish early, there are a lot of other tasks ahead of you to **continue to look into**, such as configuring your Jetson Nano, modifying/redesigning/printing the chassis, learning to perform a simple hover, using the Vicon system, and using the MAVLink API(MAVSDK/MAVROS) to control the Pixhawk with Jetson Nano. The deeper you understand each topic, the more you can do with this drone platform!
+
+## Attempting first manual flight
+When attempting your first manual flight, increase the throttle gently while keeping an eye on vibrations and oscillations. If the quadrotor begins to vibrate or oscillate on the ground as the throttle is increased, it is a sign of poor tuning and/or loose components. Disarm the drone and check if everything is fastened properly and the parameters are set correctly. If the vibrations persist, you may need to perform additional tuning.  
