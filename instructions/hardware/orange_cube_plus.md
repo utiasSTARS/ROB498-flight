@@ -30,13 +30,13 @@ If you navigate the the **Vehicle Setup** section, you will see a summary of Cub
 
 ### Sensor orientation
 
-The Cube can be installed in any orientation on the quadrotor. If the *front* of the Cube is not aligned with the *front* of the quadrotor, (as in the figure below) then sensor orientation has to be set accordingly using the `sensor orientation` tool. You are free to mount the Cube in an orientation of your choise. Make sure to set the orientation accordingly.
+The Cube can be installed in any orientation on the quadrotor. If the *front* of the Cube is not aligned with the *front* of the quadrotor, (as in the figure below) then sensor orientation has to be set accordingly using the `sensor orientation` tool. You are free to mount the Cube in an orientation of your choice. Make sure to set the orientation accordingly.
 
 <p align="center">
     <img src = "../images/cube_orientation.png" width = "300">
 </p>
 
-In the figure above, the front of the Cube (as indicated by the arrow on the cube) is rotated 90 degrees (with respect to the front of the quadrotor). The motivation for mounting it this way is to keep the cabling tidy and avoid cables hanging on the side.
+In the figure above, the front of the Cube (as indicated by the arrow on the cube) is rotated( 90 degrees in ENU and 270 degrees in NED frame with respect to the front of the quadrotor). The motivation for mounting it this way is to keep the cabling tidy and avoid cables hanging on the side.
 
 ### Sensors
 
