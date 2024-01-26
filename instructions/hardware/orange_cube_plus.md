@@ -36,7 +36,7 @@ The Cube can be installed in any orientation on the quadrotor. If the *front* of
     <img src = "../images/cube_orientation.png" width = "300">
 </p>
 
-In the figure above, the front of the Cube (as indicated by the arrow on the cube) is rotated (270 degrees in NED frame with respect to the front of the quadrotor). The motivation for mounting it this way is to keep the cabling tidy and avoid cables hanging on the side.
+In the figure above, the front of the Cube (as indicated by the arrow on the cube) is rotated (90 degrees in NED frame with respect to the front of the quadrotor). The motivation for mounting it this way is to keep the cabling tidy and avoid cables hanging on the side.
 
 ### Sensors
 
