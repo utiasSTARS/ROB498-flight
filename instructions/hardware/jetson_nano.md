@@ -33,17 +33,20 @@ Setting up communication between the Jetson Nano in the flight controller requir
 
 ## Wiring Between the Jetson Nano and Cube
 
-The Cube's **Telem 2** port can be connected to Jetson Nano's **GPIO** pins using the JST-GH-to-Dupont connector provided in your kit. This [video](https://www.youtube.com/watch?v=nIuoCYauW3s) provides instructions on how to connect the pins. Since the jumper cable is provided, you do not need to do any soldering. In summary, you will:
-
-- Connect **Pin 2** of **TELEM2** (TX/out) on Cube+ to **Pin 10** of **GPIO** (UART_RX/in, /dev/ttyTHS1) on Jetson Nano
-- Connect **Pin 3** of **TELEM2** (RX/in) on Cube+ to **Pin 8** of **GPIO** (UART_TX/out, /dev/ttyTHS1) on Jetson Nano
-- Connect **Pin 6** of **TELEM2** (Ground) on Cube+ to **Pin 9** of **GPIO** (Ground) on Jetson Nano
+The Cube's **Telem 2** port can be connected to Jetson Nano's USB ports using the USB-UART converter provided in your kit. The USB-UART converter needs to be connected to the 6-pin JST-GH connector as shown in the following images. *Please follow the cable ordering when interfacing different cables*.
 
 <p align="center">
-<img src="../images/cube_telem2.png" width="300">
+<img src="../images/telem2_usb_uart2.jpg" width="300">
+<img src="../images/telem2_usb_uart3.jpg" width="300">
 </p>
 
-The above figure shows the JST-GH cable connected to TELEM2 port of the flight controller.
+
+<p align="center">
+<img src="../images/telem2_usb_uart1.jpg" width="300">
+<img src="../images/telem2_usb_uart4.jpg" width="300">
+</p>
+
+The bottom right figure shows the UWB-UART interfacae to JST-GH cable connected to TELEM2 port of the flight controller. The USB-UART interface can then be plugged into any of the USB ports on the jetson nano.
 
 ## Configure Orange Cube+
 
