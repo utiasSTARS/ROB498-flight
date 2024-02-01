@@ -152,7 +152,7 @@ The flight controller has an internal sensor to monitor and report the battery s
 * Navigate to the "Power" section. It should look something like below
 
 <p align="center">
-<img src="../images/battery_setup.png" width = "600">
+<img src="../images/battery_setup.png" width = "400">
 </p>
 
 * If the power cord is connect as below, then set battery 1 source to `Power Module`. 
