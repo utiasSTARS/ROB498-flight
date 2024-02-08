@@ -62,9 +62,17 @@ You may also [calibrate the sensors](https://docs.qgroundcontrol.com/master/en/S
 
 ## Configure the Jetson Nano
 
-The Jetson Nano will communicate with the Cube through the `/dev/ttyTHS1` device (i.e.,a serial port) and we need to grant read and write permissions. In a terminal on Jetson Nano, execute the following command:
+The Jetson Nano will communicate with the Cube through the `/dev/ttyUSB#` device (i.e.,a serial port). We need to identify the port of the USB-UART interface. To do this disconnect and reconnect the USB-UART interface and run the following command in a new terminal:
 
-`sudo chmod 666 /dev/ttyTHS1`
+`dmesg`
+
+At the bottom of the console log, the name of the interface should show up as `ttyUSB#`. In most cases this is `ttyUSB0`.
+
+Next, we need to give persmissions to the user to talk to the port:
+
+`sudo adduser ${USER}  dialout`
+
+**NOTE** If you are using MAVROS to communicate with the Cube, make sure to modify the launch file to replace the default port `/dev/ttyACM0:57600` with `/dev/ttyUSB0:921600`.
 
 ## Test the Connection - Get Your Pose from the Cube!
 
