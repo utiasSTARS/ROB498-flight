@@ -32,9 +32,15 @@ Ths method allows you to operate the T265 using the ``librealsense`` SDK (provid
 
 https://dev.intelrealsense.com/docs/nvidia-jetson-tx2-installation
 
+You can also check the repository here:
+
+https://github.com/IntelRealSense/librealsense/releases/tag/v2.24.0
+
 This method is more suitable if you wish to use the T265 with programs outside of ROS or if you want to more easily modify launch parameters for the camera node.
 
 At some point, you may also wish to build the SDK library from source. We recommend building from source with the RSUSB backend to avoid patching the Linux kernel (but the choice is up to you).
+
+If you would like to test on Windows, the Intel.RealSense.SDK-WIN10-2.24.0.939.exe installer works for both Windows 10 and Windows 11.
 
 #### Verifying Camera Operation
 
