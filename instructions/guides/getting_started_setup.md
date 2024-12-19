@@ -38,6 +38,8 @@ It is highly recommended to connect the buzzer that is included in your kit. The
  <img src="../images/cube_aux_port.png" width = "300">
 </p>
 
+* The numbers 1-6 are included in the picture of the Cube+ to indicate which motor is which.  When using the DShot interface, you will use ports 1-4.  See the diagram below for the motor numbering.
+  
 * It is highly recommended to use Dshot protocol for communicating with ESCs. To the connect the ESCs to aux port, you can repurpose the servo connectors by combing the signal (white) wires from two ESCs into one connector and their corresponding ground (black) wires into another connector as is down below.
 
 
