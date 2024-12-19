@@ -60,12 +60,12 @@ It is highly recommended to connect the buzzer that is included in your kit. The
 
 ## Firmware/Ground Station Setup
 
-In practice, the correct avionic connections will not fully ensure that the motors will work properly. You also need to set up the firmware of the autopilot. All the settings and parameters can be modified with the ground control station (GCS) software. It is recommended to use QGroundControl (referred to as **QGC** in the following sections), which supports most OSes. Please refer to the **"Basic Configuration"** part of the PX4 documentation.
+In practice, the correct avionic connections will not fully ensure that the motors will work properly. All the settings and parameters can be modified with the ground control station (GCS) software. It is recommended to use QGroundControl (referred to as **QGC** in the following sections), which supports most OSes. Please refer to the **"Basic Configuration"** part of the PX4 documentation.
 
 <p align="center">
 <img src = "../images/QGC.png">
 </p>
-First, open QGC and click the logo on the top left to enter the vehicle setup page. Update the firmware to the latest version as instructed on the screen, and make sure the airframe is selected as **"Lumenier 5 inch (the one that is below the generic quadcopter)"**. Every time you plug in the flight controller using the micro USB cable, QGC should auto-detect it and connect automatically (it might require multiple attempts in some cases).
+The autopilot firmware should already be installed on your Cube+ flight controller (Firmware version v1.14). First, open QGC and click the logo on the top left to enter the vehicle setup page. Make sure the airframe is selected as **"Lumenier 5 inch (the one that is below the generic quadcopter)"**. Every time you plug in the flight controller using the micro USB cable, QGC should auto-detect it and connect automatically (it might require multiple attempts in some cases).
 
 If you go to vehicle setup after the firmware update, you will see a list of items to do on the left of the screen. Please check in sequence and configure everything accordingly. The key settings are:
 
