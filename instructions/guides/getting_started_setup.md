@@ -93,7 +93,7 @@ If your internal RF module is active (by default, the original antenna), you sho
 
 #### Binding Taranis transmitter with receiver
 
-To verify if the transmitter and receiver allotted to your team are already *paired* or not, turn on the transmitter and reciever (by connecting it to the flight controller). If the receiver displays a solid green LED, then this indicates that the transmitter and the receiver are already paird. Please make sure that no other transmitters are turned on in the vicinity as your receiver may be bound to a different transmitter.
+To verify if the transmitter and receiver allotted to your team are already *paired* or not, turn on the transmitter and reciever (by connecting it to the flight controller). If the receiver displays a solid green LED, then this indicates that the transmitter and the receiver are already paired. Please make sure that no other transmitters are turned on in the vicinity as your receiver may be bound to a different transmitter.
 
 If the LED on your receiver is not solid green, then follow the directions below to bind your Taranis transmitter with the RC receiver (the ARCHER R4). 
 
