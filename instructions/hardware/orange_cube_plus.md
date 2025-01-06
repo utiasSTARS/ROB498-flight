@@ -18,13 +18,13 @@ https://docs.qgroundcontrol.com/master/en/getting_started/download_and_install.h
 
 Once QGroundControl is installed and running, you can connect the Cube to your setup computer using a USB->microUSB cable. The Cube does not come with a firmware pre-installed. The first step is to upload the PX4-Autopilot (firmware) on to the Cube.
 
-### Firmware
+<!-- ### Firmware
 
-Navigate to **Vehicle Setup/Firmware**. Unplug the Cube and wait for the prompt to reconnect. Once connected, select the **PX4 Pro Stable Release** (the latest **stable** firmware **version 1.14.0** is preferred) flight stack from the righthand menu and wait for it to install. Once the firwmare has been successuflly installed, the next step is to configure the Cube.
+Navigate to **Vehicle Setup/Firmware**. Unplug the Cube and wait for the prompt to reconnect. Once connected, select the **PX4 Pro Stable Release** (the latest **stable** firmware **version 1.14.0** is preferred) flight stack from the righthand menu and wait for it to install. Once the firwmare has been successuflly installed, the next step is to configure the Cube. -->
 
 ### Setup
 
-Once the firmware is installed, QGroundControl should automatically detect it. By clicking the QGroundControl logo in the top left corner, you can enter either the **Vehicle Setup** or **Analyze Tools** screens, which will be relevant for later sections.
+By clicking the QGroundControl logo in the top left corner, you can enter either the **Vehicle Setup** or **Analyze Tools** screens, which will be relevant for later sections.
 
 If you navigate the the **Vehicle Setup** section, you will see a summary of Cube modules that must be configured before use.
 
@@ -43,11 +43,11 @@ In the figure above, the front of the Cube (as indicated by the arrow on the cub
 
 ### Sensors
 
-Navigate to **Vehicle Setup/Sensors**. Follow the instructions for calibrating the **Compass**, **Gyroscope**, **Accelerometer**, and **Level Horizon** modules by clicking on each tab in order.
+This should already be done as a part of the [Getting Started](../guides/getting_started_setup.md) procedure. If not, then please navigate to **Vehicle Setup/Sensors**. Follow the instructions for calibrating the **Compass**, **Gyroscope**, **Accelerometer**, and **Level Horizon** modules by clicking on each tab in order.
 
 ### Flight Modes
 
-Navigate to **Vehicle Setup/Flight Modes**. After completing the radio controller setup, you can bind specific hardware switches on the handheld RC (denoted as "channels" in QGroundControl) to specific actions. While you will be flying your drone in this course using commands sent from the Jetson Nano, it is useful for safety purposes to enable flight using the RC.
+This should already be done as a part of the [Getting Started](../guides/getting_started_setup.md) procedure. If not, bavigate to **Vehicle Setup/Flight Modes**. After completing the radio controller setup, you can bind specific hardware switches on the handheld RC (denoted as "channels" in QGroundControl) to specific actions. While you will be flying your drone in this course using commands sent from the Jetson Nano, it is useful for safety purposes to enable flight using the RC.
 
 We recommend that you bind **Arm Switch Channel** (which readies the motors for use), **Emergency Kill Switch Channel** (which cuts power to the motors), and **Offboard Switch Channel** (which toggles control from the Jetson) to easily-accessible switches. 
 

@@ -65,9 +65,14 @@ In practice, the correct avionic connections will not fully ensure that the moto
 <p align="center">
 <img src = "../images/QGC.png">
 </p>
-The autopilot firmware should already be installed on your Cube+ flight controller (Firmware version v1.14). First, open QGC and click the logo on the top left to enter the vehicle setup page. Make sure the airframe is selected as **"Lumenier 5 inch (the one that is below the generic quadcopter)"**. Every time you plug in the flight controller using the micro USB cable, QGC should auto-detect it and connect automatically (it might require multiple attempts in some cases).
 
-If you go to vehicle setup after the firmware update, you will see a list of items to do on the left of the screen. Please check in sequence and configure everything accordingly. The key settings are:
+## Firmware
+The autopilot firmware should already be installed on your Cube+ flight controller. We will be using PX4-Autopilot firmware version v1.14.#. Please do not install a different firmware as compatibility of firmware-specific parameters is not assured.
+
+## Setup 
+First, open QGC and click the logo on the top left to enter the vehicle setup page. Make sure the airframe is selected as **"Generic Quadcopter"**. Every time you plug in the flight controller using the micro USB cable, QGC should auto-detect it and connect automatically (it might require multiple attempts in some cases).
+
+If you go to vehicle setup, you will see a list of items to do on the left of the screen. Please check in sequence and configure everything accordingly. The key settings are:
 
 - Airframe (Generic Quadcopter)
 - Sensors (Calibrate everything for the first setup or whenever you think necessary)
@@ -86,7 +91,55 @@ As introduced above, radio setup and flight modes need more work. It may also ta
 Before binding the Taranis to the receiver, you need to first check the RF module firmware version on the Taranis. On the main screen, long press the [MENU] button, and you will enter the general setting menu for the entire Taranis. Short press the [PAGE] button multiple times to go to page 7, and you can check the [Modules/RX Version].
 If your internal RF module is active (by default, the original antenna), you should see the module name ISRM-M. If you see the version is ISRM version 1.1.3 FCC it will *not* work with the ARCHER R4 receiver provided to you. If it is 2.1.0 FCC or higher, then the receiver and transmitter are tested to work together if you follow the register/binding procedures correctly.
 
-To bind your Taranis with the RC receiver (the ARCHER R4), carefully follow the instructions in its manual (there is a hard copy with the module, and you can also always find it online). Once the receiver is bound and displays a green LED light, you should then check in the "Radio" tab of GCS if you can see the channel inputs. If the receiver is stuck in the reg mode, contact your TA. 
+#### Binding Taranis transmitter with receiver
+
+To verify if the transmitter and receiver allotted to your team are already *paired* or not, turn on the transmitter and reciever (by connecting it to the flight controller). If the receiver displays a solid green LED, then this indicates that the transmitter and the receiver are already paird. Please make sure that no other transmitters are turned on in the vicinity as your receiver may be bound to a different transmitter.
+
+If the LED on your receiver is not solid green, then follow the directions below to bind your Taranis transmitter with the RC receiver (the ARCHER R4). 
+
+The following PDF and YouTube video will be helpful and walk you through the procedure outlined below:
+* [PDF: Receiver manual](https://www.frsky-rc.com/wp-content/uploads/Downloads/Manual/ARCHER%20R6/ARCHER%20R6-Manual.pdf).
+* [Video: Binding procedure](https://www.youtube.com/watch?v=1oAvJ85TjQ0).
+
+
+1. Turn on your transmitter and select your **Model**. Scroll all the way down until you see the panel shown below. 
+
+<p align="center">
+<img src = "../images/rx_bind_access.png" width = "500">
+</p>
+
+2. Scroll down to Module option and select **Register** by pressing on the roller on your transmitter. This should put the transmitter in binding mode as below.
+
+<p align="center">
+<img src = "../images/rx_bind_reg.png" width = "500">
+</p>
+
+3. While the receiver is unpowered, press the bind button on your receiver (highlighted as button in the bottom figure).
+
+<p align="center">
+<img src = "../images/receiver_top.png" width = "250">
+</p>
+
+4. Turn on the receiver by connecting it to a powered flight controller (while holding the bind button). 
+5. The transmitter should recognize the receiver and its panel should display a message similar to below:
+
+<p align="center">
+<img src = "../images/rx_bind_rx_reg.png" width = "300">
+</p>
+
+6. Click Enter. The RED LED and GREEN LED on the receiver will flash, and the transmitter will display
+[Registration ok]. Release the button on the receiver at this point and turn it off.
+
+7. On your transmitter, in the Model Setup page, scroll down to **Receiver 1** and click on bind:
+ <p align="center">
+<img src = "../images/rx_bind_rx_select.png" width = "500">
+</p>
+The message "Waiting for RX" should pop up on the LCD panel.
+
+8. Turn on your receiver. The GREEN LED will flash, indicating it is ready to bind and the LCD panel should display the reciever, click enter to confirm. The message **Bind successful** should now be displayed on the transmitter panel.
+
+
+Once the receiver is bound and has a constant green LED light, you should then check in the "Radio" tab of GCS if you can see the channel inputs. If the receiver is stuck in the reg mode, contact your TA.
 
 Controls on the Taranis are generally mapped to the "American Hand" as shown in the figure below. If you would like to control your drone in another fashion, please notify the TAs and the professor. Remember to perform calibration when you first set up and ensure that the channel mappings are correct (for example, you do not want the moving throttle on the RC to appear to be pitch in the flight controller!). If the mapping is incorrect, you can change the channel setting in Taranis.
 
@@ -111,6 +164,9 @@ To switch the flight mode, you must first set up the Taranis to map between the 
 </p>
 
 Once this is done, go back to QGC; you can simply select among channels to map them to the functions accordingly. If your RC connection is active, you will be able to see the function name highlighted when you flip the switches. 
+
+## Autopilot configuration
+After sensor calibration, flight mode setup, please configure the autopilot by following the procedure outlined in [OrangeCubePlus setup](../hardware/orange_cube_plus.md)
 
 ## Final Checks
 
