@@ -8,9 +8,9 @@ To use the pre-configured image, first download the zip file [here](https://driv
 
 <img src="../images/flash_sd.png">
 
-Once finished, insert the microSD into the Jetson and power it on. The username and password are both *rob498*. The system comes with the following packages installed:
+Once finished, insert the microSD into the Jetson and power it on. The username and password are both *rob498* or *jetson*. The system comes with the following packages installed:
 
-- ROS Melodic
+- ROS Foxy
 - MAVROS
 - Intel Realsense SDK 2.0
 - Auterion VIO
