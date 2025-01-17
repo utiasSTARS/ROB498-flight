@@ -1,7 +1,8 @@
 import numpy as np
-import rospy
+import rclpy
+from rclpy.node import Node
 from geometry_msgs.msg import PoseArray
-from std_srvs.srv import Empty, EmptyResponse
+from std_srvs.srv import Empty
 
 STATE = 'Init'
 WAYPOINTS = None
@@ -29,21 +30,21 @@ def handle_abort():
     print('Abort Requested.')
 
 # Service callbacks
-def callback_launch(request):
+def callback_launch(request, response):
     handle_launch()
-    return EmptyResponse()
+    return response
 
-def callback_test(request):
+def callback_test(request, response):
     handle_test()
-    return EmptyResponse()
+    return response
 
-def callback_land(request):
+def callback_land(request, response):
     handle_land()
-    return EmptyResponse()
+    return response
 
-def callback_abort(request):
+def callback_abort(request, response):
     handle_abort()
-    return EmptyResponse()
+    return response
 
 def callback_waypoints(msg):
     global WAYPOINTS_RECEIVED, WAYPOINTS
@@ -56,22 +57,23 @@ def callback_waypoints(msg):
         pos = np.array([pose.position.x, pose.position.y, pose.position.z])
         WAYPOINTS = np.vstack((WAYPOINTS, pos))
 
-# Main node
-def comm_node():
+class CommNode(Node):
+    def __init__(self):
+        super().__init__('rob498_drone_00')  # Change 00 to your team ID
+        self.srv_launch = self.create_service(Empty, 'rob498_drone_00/comm/launch', callback_launch)
+        self.srv_test = self.create_service(Empty, 'rob498_drone_00/comm/test', callback_test)
+        self.srv_land = self.create_service(Empty, 'rob498_drone_00/comm/land', callback_land)
+        self.srv_abort = self.create_service(Empty, 'rob498_drone_00/comm/abort', callback_abort)
+        self.sub_waypoints = self.create_subscription(PoseArray, 'rob498_drone_00/comm/waypoints', callback_waypoints, 10)
+
+def main(args=None):
     global STATE, WAYPOINTS, WAYPOINTS_RECEIVED
 
-    # Do not change the node name and service topics!
-    name = 'rob498_drone_00'  # Change 00 to your team ID
-    rospy.init_node(name) 
-    srv_launch = rospy.Service(name+'/comm/launch', Empty, callback_launch)
-    srv_test = rospy.Service(name+'/comm/test', Empty, callback_test)
-    srv_land = rospy.Service(name+'/comm/land', Empty, callback_land)
-    srv_abort = rospy.Service(name+'/comm/abort', Empty, callback_abort)
-
-    sub_waypoints = rospy.Subscriber(name+'/comm/waypoints', PoseArray, callback_waypoints)
-
+    rclpy.init(args=args)
+    node = CommNode()
     print('This is a dummy drone node to test communication with the ground control')
-    while not rospy.is_shutdown():
+    while rclpy.ok():
+        rclpy.spin_once(node)
         if WAYPOINTS_RECEIVED:
             print('Waypoints:\n', WAYPOINTS)
 
@@ -85,7 +87,9 @@ def comm_node():
         elif STATE == 'Abort':
             print('Comm node: Aborting...')
 
-        rospy.sleep(0.2)
+        node.get_clock().sleep_for(rclpy.duration.Duration(seconds=0.2))
+
+    rclpy.shutdown()
 
 if __name__ == "__main__":
-    comm_node()
+    main()
