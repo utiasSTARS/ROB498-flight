@@ -1,5 +1,6 @@
-import rospy
-from std_srvs.srv import Empty, EmptyResponse
+import rclpy
+from rclpy.node import Node
+from std_srvs.srv import Empty
 
 # Callback handlers
 def handle_launch():
@@ -15,39 +16,35 @@ def handle_abort():
     print('Abort Requested. Your drone should land immediately due to safety considerations')
 
 # Service callbacks
-def callback_launch(request):
+def callback_launch(request, response):
     handle_launch()
-    return EmptyResponse()
+    return response
 
-def callback_test(request):
+def callback_test(request, response):
     handle_test()
-    return EmptyResponse()
+    return response
 
-def callback_land(request):
+def callback_land(request, response):
     handle_land()
-    return EmptyResponse()
+    return response
 
-def callback_abort(request):
+def callback_abort(request, response):
     handle_abort()
-    return EmptyResponse()
+    return response
 
-# Main communication node for ground control
-def comm_node():
-    print('This is a dummy drone node to test communication with the ground control')
-    print('node_name should be rob498_drone_TeamID. Service topics should follow the name convention below')
-    print('The TAs will test these service calls prior to flight')
-    print('Your own code should be integrated into this node')
-    
-    node_name = 'rob498_drone_XX'
-    rospy.init_node(node_name) 
-    srv_launch = rospy.Service(node_name + '/comm/launch', Empty, callback_launch)
-    srv_test = rospy.Service(node_name + '/comm/test', Empty, callback_test)
-    srv_land = rospy.Service(node_name + '/comm/land', Empty, callback_land)
-    srv_abort = rospy.Service(node_name + '/comm/abort', Empty, callback_abort)
+class CommNode(Node):
+    def __init__(self):
+        super().__init__('rob498_drone_XX')
+        self.srv_launch = self.create_service(Empty, 'rob498_drone_XX/comm/launch', callback_launch)
+        self.srv_test = self.create_service(Empty, 'rob498_drone_XX/comm/test', callback_test)
+        self.srv_land = self.create_service(Empty, 'rob498_drone_XX/comm/land', callback_land)
+        self.srv_abort = self.create_service(Empty, 'rob498_drone_XX/comm/abort', callback_abort)
 
-    # Your code goes below
-
-    rospy.spin()
+def main(args=None):
+    rclpy.init(args=args)
+    node = CommNode()
+    rclpy.spin(node)
+    rclpy.shutdown()
 
 if __name__ == "__main__":
-    comm_node()
+    main()
