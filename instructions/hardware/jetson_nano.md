@@ -142,7 +142,7 @@ Now the two devices are ready to talk to each other! To test the comms, we can r
 The general procedure, when using Vicon  is as follows:
 1. The pose of the quadrotor will be published on a ROS2 topic `/vicon/ROB498_Drone/ROB498_Drone`.
 
-2. In a terminal, launch MAVROS by running `ros2 launch mavros px4.launch fcu_url:=/dev/ttyUSB0:921600`. Alternatively, a lunch file with the necessary parameters is provided here: [link](../../resources/code/ros2_ws/src/px4_autonomy_modules/launch/mavros.launch.py).
+2. In a terminal, launch MAVROS by running `ros2 launch mavros px4.launch fcu_url:=/dev/ttyUSB0:921600`. Alternatively, a launch file with the necessary parameters is provided here: [link](../../resources/code/ros2_ws/src/px4_autonomy_modules/launch/mavros.launch.py).
 
 3. You can use [mavros](https://github.com/mavlink/mavros) to package to *redirect* the pose data from Vicon to the flight controller. An option is to write a ROS node that subscribes to the pose data from the motion capture system and republishes it on the topic `/mavros/vision_pose/pose` (the topic might have a different name depending on your setup).
 
