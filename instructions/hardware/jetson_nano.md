@@ -144,7 +144,7 @@ The general procedure, when using Vicon  is as follows:
 
 2. In a terminal, launch MAVROS by running `ros2 launch mavros px4.launch fcu_url:=/dev/ttyUSB0:921600`. Alternatively, a launch file with the necessary parameters is provided here: [link](../../resources/code/ros2_ws/src/px4_autonomy_modules/launch/mavros.launch.py).
 
-3. You can use [mavros](https://github.com/mavlink/mavros) to package to *redirect* the pose data from Vicon to the flight controller. An option is to write a ROS node that subscribes to the pose data from the motion capture system and republishes it on the topic `/mavros/vision_pose/pose` (the topic might have a different name depending on your setup).
+3. You can use [mavros](https://github.com/mavlink/mavros) package to *redirect* the pose data from Vicon to the flight controller. An option is to write a ROS node that subscribes to the pose data from the motion capture system and republishes it on the topic `/mavros/vision_pose/pose` (the topic might have a different name depending on your setup).
 
 <!-- - MAVROS by default publishes information at a very low rate, or not publishes them at all. We can enable data streams, and set the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 Hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry.  -->
 
