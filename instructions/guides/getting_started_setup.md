@@ -65,6 +65,35 @@ It is highly recommended to connect the buzzer that is included in your kit. The
 <img src = "../images/quadrotorx.svg" width = "300">
 </p>
 
+
+## Reversing motor direction
+
+If the motor directions are not as shown in the above figure, they can be changed using Mavlink console. **The following steps are applicable only when using DShot protocol**.
+
+1. First access the MAVlink shell in QGC by clicking on the top left logo and then following `Analyze-> Mavlink Console` as shown here: [link](https://docs.qgroundcontrol.com/master/en/qgc-user-guide/analyze_view/mavlink_console.html).
+2. Confirm that DShot protocol is working as intended by commanding a beep signal in the mavlink shell:
+```
+dshot beep1 -m 1
+```
+where `-m 1` implies the command is sent to motor #1.
+
+3. Change the direction of the intended motor by executing the following commands in the shell
+
+```
+dshot reverse -m 1
+dshot save -m 1
+```
+
+The above set of commands reverse the direction for motor #1. Similar procedure can be followed to reverse any of the other three motors.
+
+In the event of accidental change of motor direction, normal direction can be restored as follows:
+```
+dshot normal -m 1
+dshot save -m 1
+```
+
+More information about this can be found in **ESC commands** sections here: [link](https://docs.px4.io/main/en/peripherals/dshot.html).
+
 ## Firmware/Ground Station Setup
 
 In practice, the correct avionic connections will not fully ensure that the motors will work properly. All the settings and parameters can be modified with the ground control station (GCS) software. It is recommended to use QGroundControl (referred to as **QGC** in the following sections), which supports most OSes. Please refer to the **"Basic Configuration"** part of the PX4 documentation.
