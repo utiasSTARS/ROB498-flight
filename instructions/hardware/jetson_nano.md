@@ -23,9 +23,39 @@ ROS2 is a set of libraries and tools that help people build robot software. If y
 
 [MAVROS](http://wiki.ros.org/mavros) is a ROS package that provides a wrapper for the MAVLink protocol. We use it as a bridge between the Jetson Nano and other devices such as the CubePilot Orange Cube+ flight controller.
 
+To install and configure mavros please run the following commands
+
+```
+sudo apt remove modemmanager
+sudo adduser ${USER} dialout
+
+sudo apt install ros-foxy-mavros-extras
+
+cd /opt/ros/foxy/lib/mavros/
+sudo ./install_geographiclib_datasets.sh
+```
+
+Reboot the Jetson Nano computer after the above steps.
+
 ## Intel Realsense VIO
 
 The Intel Realsense T265 Tracking Camera provides a fully self-contained visual-interial odometry capability to your drone. We will use the estimated pose from the T265 camera to localize the drone when flying.
+
+The packages necessary to run the realsense camera can be installed by running the following commands:
+
+```
+sudo apt install ros-foxy-realsense2-camera
+```
+
+To test your realsense camera, connect it to the Jetson Nano computer and launch the driver node:
+```
+ros2 launch realsense2_camera rs_launch.py
+```
+
+The VIO output can be accessed over the following topic:
+```
+ros2 topic echo /camera/pose/sample
+```
 
 # Communication Between the Jetson Nano and the flight controller
 

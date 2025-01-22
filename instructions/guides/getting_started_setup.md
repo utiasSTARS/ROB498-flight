@@ -67,7 +67,7 @@ In practice, the correct avionic connections will not fully ensure that the moto
 </p>
 
 ## Firmware
-The autopilot firmware should already be installed on your Cube+ flight controller. We will be using PX4-Autopilot firmware version v1.14.#. Please do not install a different firmware as compatibility of firmware-specific parameters is not assured.
+The autopilot firmware should already be installed on your Cube+ flight controller. We will be using PX4-Autopilot firmware version v1.14.#. **Please do not install a different firmware as compatibility of firmware-specific parameters is not assured**. The firmware version can be verified using QGroundControl under "Vehicle Setup/Summary".
 
 ## Setup 
 First, open QGC and click the logo on the top left to enter the vehicle setup page. Make sure the airframe is selected as **"Generic Quadcopter"**. Every time you plug in the flight controller using the micro USB cable, QGC should auto-detect it and connect automatically (it might require multiple attempts in some cases).
