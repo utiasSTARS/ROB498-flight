@@ -141,18 +141,34 @@ Now the two devices are ready to talk to each other! To test the comms, we can r
 
 The general procedure, when using Vicon  is as follows:
 1. The pose of the quadrotor will be published on a ROS2 topic `/vicon/ROB498_Drone/ROB498_Drone`.
-2. In a terminal, launch MAVROS by running `ros2 launch mavros px4.launch fcu_url:=/dev/ttyUSB0:921600`.
+
+2. In a terminal, launch MAVROS by running `ros2 launch mavros px4.launch fcu_url:=/dev/ttyUSB0:921600`. Alternatively, a lunch file with the necessary parameters is provided here: [link](../../resources/code/ros2_ws/src/px4_autonomy_modules/launch/mavros.launch.py).
+
 3. You can use [mavros](https://github.com/mavlink/mavros) to package to *redirect* the pose data from Vicon to the flight controller. An option is to write a ROS node that subscribes to the pose data from the motion capture system and republishes it on the topic `/mavros/vision_pose/pose` (the topic might have a different name depending on your setup).
 
 <!-- - MAVROS by default publishes information at a very low rate, or not publishes them at all. We can enable data streams, and set the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 Hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry.  -->
 
 4. To verify, we can check the publishing rate by running `ros2 topic hz /mavros/odometry/in` in the another terminal. You can also use RViz to visualize the vehicle pose.
 
+**IMPORTANT:** The pose reported by the motion capture system depends on the markers mounted on the quadrotor. It is IMPERATIVE that the motion capture estimates be **aligned** with quadrotor body frame: If the quadrotor is manually moved forward, the pose reported by motion capture system should change accordingly (`translation.x` field of `/vicon/ROB498_Drone/ROB498_Drone` should increase). Similarly roll, pitch, and yaw angle changes need to be verified by manually moving the quadrotor.
+
 ## Use Realsense T265 Tracking Camera For Pose Estimation
 
-In the absence of GPS, the Cube uses the internal IMU to estimate its pose, which could drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. First, you need to connect the camera to the Jetson using the provided USB3.0 cable. 
+In the absence of GPS, the Cube uses the internal IMU to estimate its pose, which will drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. To use the Realsense VIO output
+1. Launch the realsense camera driver:
+```
+ros2 launch realsense2_camera rs_camera.launch.py
+```
 
-<-- MORE DETAILS SOON-->
+2. If the camera is working as expected (the console log should have the line `Realsense Node is up!`), there should be ROS2 topic with odometry output, which can be confirmed using
+```
+ros2 topic echo /camera/pose/sample
+```
+
+Follow a procedure similar to the motion capture setup to redirect the VIO output to `\mavros\vision_pose\pose`.
+
+**IMPORTANT:** The reference frame for VIO output depends on several factors including (i) where the system (specifically the camera driver) was powered on, and more importantly (ii) the orientation of camera relative to the quadrotor body frame. It is IMPERATIVE that the VIO output be **aligned** with quadrotor body frame: If the quadrotor is manually moved forward, the VIO output should change accordingly (`pose.position.x` field of `\camera\pose\sample` should increase). Similarly roll, pitch, and yaw angle changes need to be verified by manually moving the quadrotor. If the VIO estimates do not align with its motion, then the quadrotor cannot maintain its position or attitude and can lead to unstable flight. 
+
 <!-- The Auterion VIO package is installed at `~/thirdparty/vio_ws`. Source this ROS workspace and run `roslaunch px4_realsense_bridge bridge_mavros.launch` to launch the bridge. -->
 
  <!-- The estimated poses should be published under the `/mavros/odometry/out` topic. -->
