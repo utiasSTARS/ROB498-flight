@@ -9,7 +9,7 @@ To use the pre-configured image, first download the zip file [here](https://driv
 
 <img src="../images/flash_sd.png"> -->
 
-The username and password are both *rob498*. The system comes with the following packages installed:
+The username and password are both *jetson*. The system comes with the following packages installed:
 
 - [ROS2 Foxy](https://docs.ros.org/en/foxy/Tutorials.html)
 - [MAVROS] (http://wiki.ros.org/mavros)
