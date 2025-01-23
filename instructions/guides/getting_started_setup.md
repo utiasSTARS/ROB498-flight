@@ -6,6 +6,13 @@ As your first challenge in the capstone course, each team will need to assemble 
 
 This manual will help you get started with the  core steps of assembling the hardware and configuring the basic software of the drone for this course. PX4 is the recommended open-source firmware for the CubePilot's Orange Cube+  flight controller. The Ardupilot firmware-GCS is also widely used, and you are free to try it as you wish. Students are not expected to write low-level drone control code since this complexity is beyond the undergraduate level (given the time available for the capstone). This is why the PX4 open-source firmware has been and is still being actively developed by thousands of outstanding engineers worldwide. We hope that your work in this course will also be able to contribute to the open-source community!
 
+There are three major modules that need configuration and setup:
+1. The hardware setup as outlined in this page.
+2. Configuration of the Cube+ autopilot: [link](../../instructions/hardware/orange_cube_plus.md)
+3. Configuration of the Jetson nano computer: [link](../../instructions/hardware/jetson_nano.md).
+
+Please ensure that you have read through three guides thoroughly.
+
 For this course, the **main reference is the [PX4 Autopilot official documentation](https://docs.px4.io/main/en/)** (many languages are available!). The documentation is quite comprehensive. As you might have noticed, you do not need to read everything. The point of these instructions are to help you get a head start.
 
 <img src = "../images/px4-logo.svg" width = "200">
@@ -96,7 +103,7 @@ In practice, the correct avionic connections will not fully ensure that the moto
 </p>
 
 ## Firmware
-The autopilot firmware should already be installed on your Cube+ flight controller. We will be using PX4-Autopilot firmware version v1.14.#. Please do not install a different firmware as compatibility of firmware-specific parameters is not assured.
+The autopilot firmware should already be installed on your Cube+ flight controller. We will be using PX4-Autopilot firmware version v1.14.#. **Please do not install a different firmware as compatibility of firmware-specific parameters is not assured**. The firmware version can be verified using QGroundControl under "Vehicle Setup/Summary".
 
 ## Setup 
 First, open QGC and click the logo on the top left to enter the vehicle setup page. Make sure the airframe is selected as **"Generic Quadcopter"**. Every time you plug in the flight controller using the micro USB cable, QGC should auto-detect it and connect automatically (it might require multiple attempts in some cases).

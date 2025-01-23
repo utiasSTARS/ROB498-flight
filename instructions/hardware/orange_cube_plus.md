@@ -30,7 +30,7 @@ If you navigate the the **Vehicle Setup** section, you will see a summary of Cub
 
 ### Sensor orientation
 
-The Cube can be installed in any orientation on the quadrotor. If the *front* of the Cube is not aligned with the *front* of the quadrotor, (as in the figure below) then sensor orientation has to be set accordingly using the `sensor orientation` tool. You are free to mount the Cube in an orientation of your choice. Make sure to set the orientation accordingly.
+The Cube can be installed in any orientation on the quadrotor. If the *front* of the Cube is not aligned with the *front* of the quadrotor, (as in the figure below) then sensor orientation has to be set using QGroundControl. Navigate to the `sensors` panel and select the `sensor orientation` tool. You are free to mount the Cube in an orientation of your choice. Make sure to set the orientation accordingly.
 
 <p align="center">
     <img src = "../images/cube_orientation.png" width = "300">
@@ -53,7 +53,7 @@ We recommend that you bind **Arm Switch Channel** (which readies the motors for 
 
 You should also use a separate channel for the **Flight Mode Settings** to easily enter modes like **Manual** and **Stabilized**. You may also wish to control entry to **Offboard** mode from here.
 
-### TELEM2 (Jetson Nano)
+<!-- ### TELEM2 (Jetson Nano)
 
 The Cube's TELEM2 port is a port for communication with an onboard computer using Mavlink protocol. For use with the Jetson Nano, the TELEM2 port is wired up to the GPIO pins on the Jetson through a UART-based serial connection (see **Wiring and Connections** above).
 
@@ -63,7 +63,7 @@ https://www.jetsonhacks.com/nvidia-jetson-nano-j41-header-pinout/
 
 Pins **6**, **8**, and **10** in the Jetson Header board are used for the UART connection to the Cube. Note that for UART connections, RX -> TX and TX -> RX from the Jetson to the Cube. Pin **6** may be labeled as **GND** on the physical Jetson board, but it is in the space specified by the above link and should be wired to the GND pin of the TELEM2 port. A connection cable (6-pin JST-GH to 3-pin Dupont) is provided in your kit.
 
-Note the address for these UART pins on the Jetson header board is listed as ``/dev/ttyTHS1``, which will be useful when setting up a MAVROS based connection for these devices.
+Note the address for these UART pins on the Jetson header board is listed as ``/dev/ttyTHS1``, which will be useful when setting up a MAVROS based connection for these devices. -->
 
 ## Other Parameters
 
@@ -85,29 +85,13 @@ The quadrotor response might seem sluggish with these PID values. You can tune t
 
 **NOTE**: *PID tuning can be quiet challenging and must be avoided unless  necessary.*
 
-### Onboard Jetson Communication
-
-Communication with the Jetson Nano is through the GPIO pins and must be configured by changing a few parameters. First, enable Mavlink communication on TELEM2:
-
- - MAV_1_CONFIG      -> TELEM2
-
-Reboot the flight controller. Next, you must configure the Cube to send and receive MAVLink messages at an acceptable rate. This can be done by setting the following parameters:
-
-- MAV_1_MODE        -> Onboard
-- SER_TEL2_BAUD     -> 921600 8N1
-
-<p align="center">
-    <img src = "../images/cube_telem2.png" width = "300">
-</p>
-
-The above figure shows JSG-GH cable connected to TELEM2 port of the cube.
-
 
 ### Offboard Position Estimation
 
-Because the Cube is normally configured to receive position information from a GPS module and this course is conducted indoors, you need to supply a position estimate from an external source. This can be done by passing odometry messages through MAVROS on the topic `/mavros/vision_pose/pose`.
+Offboard position estimation and navigation requires the communication with the Jetson Nano computer. Instructions on setting up the computer can be found here [Jetson Nano computer setup](../hardware/jetson_nano.md).
 
-The Cube fuses position information through an EKF2 module, which has many configuration parameters. To set up the Cube to fuse this external information, you need to set the following parameters. 
+
+Because the Cube is normally configured to receive position information from a GPS module and this course is conducted indoors, you need to supply a position estimate from an external source such as the Vicon motion capture system or visual-inertial odometry.  The Cube fuses position information through an EKF2 module, which has many configuration parameters. To set up the Cube to fuse this external information, you need to set the following parameters. 
 
 Enable EKF2 to use height reported by visual inertial odometry (VIO) or Vicon:
 
@@ -133,9 +117,9 @@ Additional information on fusing external pose information with the autopilot's 
 
 https://docs.px4.io/v1.14/en/ros/external_position_estimation.html#using-vision-or-motion-capture-systems-for-position-estimation
 
-To enable loopback of odometry measurements over MAVLink, set the following parameter:
+<!-- To enable loopback of odometry measurements over MAVLink, set the following parameter:
 
-- MAV_ODOM_LP       -> 1
+- MAV_ODOM_LP       -> 1 -->
 
 ### TeraRanger Evo Configuration
 
