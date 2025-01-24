@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from std_srvs.srv import Empty
+from std_srvs.srv import Empty, Trigger
 
 # Callback handlers
 def handle_launch():
@@ -35,10 +35,10 @@ def callback_abort(request, response):
 class CommNode(Node):
     def __init__(self):
         super().__init__('rob498_drone_XX')
-        self.srv_launch = self.create_service(Empty, 'rob498_drone_XX/comm/launch', callback_launch)
-        self.srv_test = self.create_service(Empty, 'rob498_drone_XX/comm/test', callback_test)
-        self.srv_land = self.create_service(Empty, 'rob498_drone_XX/comm/land', callback_land)
-        self.srv_abort = self.create_service(Empty, 'rob498_drone_XX/comm/abort', callback_abort)
+        self.srv_launch = self.create_service(Trigger, 'rob498_drone_XX/comm/launch', callback_launch)
+        self.srv_test = self.create_service(Trigger, 'rob498_drone_XX/comm/test', callback_test)
+        self.srv_land = self.create_service(Trigger, 'rob498_drone_XX/comm/land', callback_land)
+        self.srv_abort = self.create_service(Trigger, 'rob498_drone_XX/comm/abort', callback_abort)
 
 def main(args=None):
     rclpy.init(args=args)
