@@ -2,7 +2,7 @@ import numpy as np
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import PoseArray
-from std_srvs.srv import Empty
+from std_srvs.srv import Trigger
 
 STATE = 'Init'
 WAYPOINTS = None
@@ -60,10 +60,10 @@ def callback_waypoints(msg):
 class CommNode(Node):
     def __init__(self):
         super().__init__('rob498_drone_00')  # Change 00 to your team ID
-        self.srv_launch = self.create_service(Empty, 'rob498_drone_00/comm/launch', callback_launch)
-        self.srv_test = self.create_service(Empty, 'rob498_drone_00/comm/test', callback_test)
-        self.srv_land = self.create_service(Empty, 'rob498_drone_00/comm/land', callback_land)
-        self.srv_abort = self.create_service(Empty, 'rob498_drone_00/comm/abort', callback_abort)
+        self.srv_launch = self.create_service(Trigger, 'rob498_drone_00/comm/launch', callback_launch)
+        self.srv_test = self.create_service(Trigger, 'rob498_drone_00/comm/test', callback_test)
+        self.srv_land = self.create_service(Trigger, 'rob498_drone_00/comm/land', callback_land)
+        self.srv_abort = self.create_service(Trigger, 'rob498_drone_00/comm/abort', callback_abort)
         self.sub_waypoints = self.create_subscription(PoseArray, 'rob498_drone_00/comm/waypoints', callback_waypoints, 10)
 
 def main(args=None):
