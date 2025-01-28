@@ -30,5 +30,3 @@ Example order of operations for Task 2 is as follows:
 6. Once the pose data **and** the setpoints are being sent to the flight controller via MAVROS, you will be able to transition to OFFBOARD mode by flippting the switch on your RC transmitter. You can enter OFFBOARD mode programmatically as shown here [offboard example](https://docs.px4.io/main/en/ros/mavros_offboard_python.html).
 
 CAUTION: OFFBOARD mode can be dangerous as the autopilot is under the control of your script. Exercise extreme caution when operating in this mode. Practice taking control by switching into STABILIZED flight mode from OFFBOARD mode to recover your quadrotor in case things go wrong. 
-
-s
