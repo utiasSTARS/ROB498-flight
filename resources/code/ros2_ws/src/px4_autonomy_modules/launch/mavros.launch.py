@@ -9,7 +9,7 @@ def generate_launch_description():
         #
         DeclareLaunchArgument(
             name="fcu_url",
-            default_value="/dev/ttyACM0:921600"
+            default_value="/dev/ttyUSB0:921600"
         ),
         #
         DeclareLaunchArgument(
