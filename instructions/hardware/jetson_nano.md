@@ -148,8 +148,6 @@ The general procedure, when using Vicon  is as follows:
 
 <!-- - MAVROS by default publishes information at a very low rate, or not publishes them at all. We can enable data streams, and set the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 Hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry.  -->
 
-4. To verify, we can check the publishing rate by running `ros2 topic hz /mavros/odometry/in` in the another terminal. You can also use RViz to visualize the vehicle pose.
-
 **IMPORTANT:** The pose reported by the motion capture system depends on the markers mounted on the quadrotor. It is IMPERATIVE that the motion capture estimates be **aligned** with quadrotor body frame: If the quadrotor is manually moved forward, the pose reported by motion capture system should change accordingly (`translation.x` field of `/vicon/ROB498_Drone/ROB498_Drone` should increase). Similarly roll, pitch, and yaw angle changes need to be verified by manually moving the quadrotor.
 
 ## Use Realsense T265 Tracking Camera For Pose Estimation
@@ -171,7 +169,6 @@ Follow a procedure similar to the motion capture setup to redirect the VIO outpu
 
 <!-- The Auterion VIO package is installed at `~/thirdparty/vio_ws`. Source this ROS workspace and run `roslaunch px4_realsense_bridge bridge_mavros.launch` to launch the bridge. -->
 
- <!-- The estimated poses should be published under the `/mavros/odometry/out` topic. -->
 
 # Wifi
 
