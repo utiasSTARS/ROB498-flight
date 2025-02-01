@@ -20,3 +20,5 @@
       - command
       - companion_process_status
       - vision_pose
+      - setpoint_position
+      - setpoint_velocity
