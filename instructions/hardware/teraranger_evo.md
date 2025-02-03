@@ -28,6 +28,15 @@ In order for the Evo's measurements to be readable by the Cube (and eventually R
 
 To ensure proper communication, you can navigate to the **MAVLink Inspector** in **Analyze Tools/MAVLink Inspector** and read data through the ``DISTANCE_SENSOR`` topic. This can only be done after the previous commands have been executed.
 
+If you do not see any data in **MAVLink Inspector** you may need to start the driver manually. To do so, open the **MAV Console** terminal.
+```
+i2cdetect -b 2
+```
+Use the address found to set the parameter is
+```
+teraranger start -X -b 2 -a XX
+```
+
 ## Usage Instructions
 
 To recieve Evo measurements from ROS, you must first have the `mavros` and `mavros_extras` packages installed. `mavros_extras` already contains the correct plugin that reads MAVLink distance sensor measurements, but you need to enable this plugin by commenting out or deleting the "- rangefinder" and "- distance_sensor" lines in `mavros/mavros/launch/px4_pluginlists.yaml` file under the **plugin_blacklist** heading. 
