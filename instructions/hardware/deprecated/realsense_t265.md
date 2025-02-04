@@ -1,3 +1,5 @@
+### This documentation is not applicable for ROS2 Foxy setup
+
 # Intel RealSense T265 Tracking Camera Setup
 
 The Intel RealSense T265 camera incorporates two fisheye lenses and image sensors, an IMU, and an Intel Movidius Myriad 2 VPU. Visual simultaneous localization and mapping (VSLAM) runs directly on the device, enabling real-time tracking in large-scale environments. The datasheet for the camera is available [here](https://www.intelrealsense.com/wp-content/uploads/2019/09/Intel_RealSense_Tracking_Camera_Datasheet_Rev004_release.pdf).

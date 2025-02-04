@@ -1,3 +1,5 @@
+#### This documentation is not applicable to the newer CubePlus flight controller.
+
 # Pixhawk 4 Mini
 
 The Pixhawk 4 Mini is a flight controller developed by a collaboration involving Holybro and Auterion. It is configured with the open source PX4 firmware using the QGroundControl program. More information about the Pixhawk 4 Mini can be found here:
