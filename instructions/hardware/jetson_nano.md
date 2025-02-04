@@ -133,7 +133,7 @@ First, you need to connect your Jetson to our router. The SSID is `TP_LINK_ROB49
 - `export ROS_IP=*YOUR_IP*` -->
 -  `ros2 topic echo /vicon/ROB498_Drone/ROB498_Drone`
  
- The Vicon poses will published as [TransformStamped](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/TransformStamped.html) messages as well as in the `/tf` topic. If you do not see any messages being printed, reach out to your TA. Note that you must run the first two `export` commands in the terminal every time you want to launch a ROS node. 
+ The Vicon poses will published as [PoseStamped](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseStamped.html) messages as well as in the `/tf` topic. If you do not see any messages being printed, reach out to your TA. Note that you must run the first two `export` commands in the terminal every time you want to launch a ROS node. 
 
 ## Use Vicon motion capture for Pose Estimation
 
