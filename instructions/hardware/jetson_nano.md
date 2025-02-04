@@ -44,6 +44,7 @@ The Intel Realsense T265 Tracking Camera provides a fully self-contained visual-
 The packages necessary to run the realsense camera can be installed by running the following commands:
 
 ```
+sudo apt remove librealsense*
 sudo apt install ros-foxy-realsense2-camera
 ```
 
@@ -56,6 +57,15 @@ The VIO output can be accessed over the following topic:
 ```
 ros2 topic echo /camera/pose/sample
 ```
+
+If you get an error saying `RS2_USB_ACCESS_DENIED` or `No Realsense Device Found`, copy the UDEV rules [99-realsense-usb.rules](../../resources/configs/99-realsense-usb.rules) as follows
+
+```
+sudo cp 99-librealsense-usb.rules /etc/udev/rules.d
+sudo udevadm control --reload-rules && udevadm trigger
+```
+
+Reboot the jetson nano and eeconnect the realsense camera and the above issues should go away.
 
 # Communication Between the Jetson Nano and the flight controller
 
