@@ -61,11 +61,11 @@ ros2 topic echo /camera/pose/sample
 If you get an error saying `RS2_USB_ACCESS_DENIED` or `No Realsense Device Found`, copy the UDEV rules [99-realsense-usb.rules](../../resources/configs/99-realsense-usb.rules) as follows
 
 ```
-sudo cp 99-librealsense-usb.rules /etc/udev/rules.d
+sudo cp 99-librealsense-usb.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules && udevadm trigger
 ```
 
-Reboot the jetson nano and eeconnect the realsense camera and the above issues should go away.
+Reboot the jetson nano and reconnect the realsense camera and the above issues should go away.
 
 # Communication Between the Jetson Nano and the flight controller
 
