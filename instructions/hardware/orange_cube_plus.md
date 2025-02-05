@@ -101,9 +101,9 @@ Enable EKF2 to use 3D position and yaw from external source:
 
 - EKF2_EV_CTRL      -> 11
 
-Note 3D velocity is not available by default when using motion capture system. However, it is available when using T265 as source of VIO. If 3D velocity is avaiable:
+<!--Note 3D velocity is not available by default when using motion capture system. However, it is available when using T265 as source of VIO. If 3D velocity is avaiable:
 
-- EKF2_EV_CTRL     -> 15
+- EKF2_EV_CTRL     -> 15 -->
 
 Optinally, disable GPS:
 
