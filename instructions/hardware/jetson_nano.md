@@ -165,7 +165,7 @@ The general procedure, when using Vicon  is as follows:
 In the absence of GPS, the Cube uses the internal IMU to estimate its pose, which will drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. To use the Realsense VIO output
 1. Launch the realsense camera driver:
 ```
-ros2 launch realsense2_camera rs_camera.launch.py
+ros2 launch realsense2_camera rs_launch.py
 ```
 
 2. If the camera is working as expected (the console log should have the line `Realsense Node is up!`), there should be ROS2 topic with odometry output, which can be confirmed using
