@@ -145,6 +145,13 @@ First, you need to connect your Jetson to our router. The SSID is `TP_LINK_ROB49
  
  The Vicon poses will published as [PoseStamped](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseStamped.html) messages as well as in the `/tf` topic. If you do not see any messages being printed, reach out to your TA. Note that you must run the first two `export` commands in the terminal every time you want to launch a ROS node. 
 
+## Interfacing with TA computer 
+
+In order to interface with the TA computer (this is required for Vicon as well as running each of the challenges), you must set your ROS_DOMAIN_ID variable. This will ensure that other teams' nodes do not interfere with your flight. Set the ID to your team number to avoid collisions. You can add it to your .bashrc file to avoid needing to repeat the process each time. Specifcally, 
+```
+echo 'export ROS_DOMAIN_ID=<TEAM_NUMBER>' >> ~/.bashrc 
+```
+
 ## Use Vicon motion capture for Pose Estimation
 
 Now the two devices are ready to talk to each other! To test the comms, we can run the following commands on Jetson:
