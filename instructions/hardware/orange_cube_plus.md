@@ -127,7 +127,7 @@ The Cube is designed to recognize rangefinder devices like the TeraRanger Evo 60
 
 - SENS_EN_TRANGER   -> TREvo60m
 
-If you want the range sensor to be the source of height information then set the following parameters
+**CAUTION**: Set the following parameter only if you want the range sensor to be the source of height information directly into EKF2 running on the cube. If you want to access the distance sensor measurements via ROS2, then **do not** set the following parameter.  
 
 - EKF2_HGT_REF -> Range sensor
 
