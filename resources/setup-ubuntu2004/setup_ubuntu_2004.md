@@ -26,5 +26,6 @@ Upgrading jetson nano to Ubuntu 20.04: https://qengineering.eu/install-ubuntu-20
 
 NOTE: Do not use the SD card recommendation suggested in the above link.
 
-NOTE: Instructions for flashing the onboard emmc with Ubuntu 18.04 can be found here: http://www.yahboom.net/study/jetson-nano
+NOTE: Instructions for flashing the onboard emmc with Ubuntu 18.04 can be found here: http://www.yahboom.net/study/jetson-nano under "3. Jetson Nano SUB basic tutorial -> 3.2 Write EMMC system". 
+
 
