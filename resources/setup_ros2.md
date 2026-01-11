@@ -1,4 +1,4 @@
-# How to install ROS2 Humble on a Jetson Nano
+# How to Install ROS2 Humble on a Jetson Nano
 
 ## Prerequisites
 

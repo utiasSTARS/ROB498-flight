@@ -28,7 +28,7 @@ By clicking the QGroundControl logo in the top left corner, you can enter either
 
 If you navigate the the **Vehicle Setup** section, you will see a summary of Cube modules that must be configured before use.
 
-### Sensor orientation
+### Sensor Orientation
 
 The Cube can be installed in any orientation on the quadrotor. If the *front* of the Cube is not aligned with the *front* of the quadrotor, (as in the figure below) then sensor orientation has to be set using QGroundControl. Navigate to the `sensors` panel and select the `sensor orientation` tool. You are free to mount the Cube in an orientation of your choice. Make sure to set the orientation accordingly.
 
@@ -85,11 +85,9 @@ The quadrotor response might seem sluggish with these PID values. You can tune t
 
 **NOTE**: *PID tuning can be quiet challenging and must be avoided unless  necessary.*
 
-
 ### Offboard Position Estimation
 
 Offboard position estimation and navigation requires the communication with the Jetson Nano computer. Instructions on setting up the computer can be found here [Jetson Nano computer setup](../hardware/jetson_nano.md).
-
 
 Because the Cube is normally configured to receive position information from a GPS module and this course is conducted indoors, you need to supply a position estimate from an external source such as the Vicon motion capture system or visual-inertial odometry.  The Cube fuses position information through an EKF2 module, which has many configuration parameters. To set up the Cube to fuse this external information, you need to set the following parameters. 
 
@@ -131,7 +129,7 @@ The Cube is designed to recognize rangefinder devices like the TeraRanger Evo 60
 
 - EKF2_HGT_REF -> Range sensor
 
-## Battery setup
+## Battery Management
 
 The flight controller has an internal sensor to monitor and report the battery status. Since, the sensor needs to operate across a range of voltages, calibration to your specific battery type may be needed. The following steps provide instructions to calibrate the battery monitor.
 
@@ -147,8 +145,6 @@ The flight controller has an internal sensor to monitor and report the battery s
 <p align="center">
     <img src = "../images/cube_orientation.png" width = "150">
 </p>
-
-
 
 * Since we are using a 4-cell LiPo battery, the following parameters need to be set:
 ```

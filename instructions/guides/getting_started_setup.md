@@ -2,9 +2,9 @@
 
 Authors: Xuan Wang and Jonathan Kelly
 
-As your first challenge in the capstone course, each team will need to assemble your drone, configure it properly, and pass the "run up" demonstration to prove that your aircraft is **air-worthy**. The demostration (Challenge Task #1) will happen soon after the safety lecture, where each team will chose a time slot to meet with TAs. During the "run up" demo, everything will happen on the ground; your team must follow and pass all the [checklist items for the course](https://q.utoronto.ca/courses/299314) and short interviews by the TAs (with some simple questions) to show that you have **fully understood** all the safety guidelines and pre-flight/post-flight procedures. **Prior to the demo, no team should install their propellers or fly their drone**. If the checklist test is passed and there is time left, the head TA will help your team carry out a quick test flight. This task might look simple, but it is the *most critical part* of succeding in later challenges (by ensuring a good foundation for safety).
+As your first challenge in the capstone course, your team will need to assemble your drone, configure it properly, and pass the "run up" demonstration to prove that your aircraft is **air-worthy**. The demostration (Flight Exercise #1) will happen soon after the safety lecture, where each team will choose a time slot to meet with TAs. During the "run up" demo, everything will happen on the ground; your team must also successfully 'pass' a short interview with the TAs (and answer some simple questions) to show that you have **fully understood** all the safety guidelines and pre-flight/post-flight procedures. **Prior to the demo, you should not install your propellers or fly your drone**. If the exercise goes well and there is time left, the TAs will help your team carry out a quick test flight. This task might look simple, but it is the *most critical part* of succeding in lthe course (by ensuring a good foundation for safety)!
 
-This manual will help you get started with the  core steps of assembling the hardware and configuring the basic software of the drone for this course. PX4 is the recommended open-source firmware for the CubePilot's Orange Cube+  flight controller. The Ardupilot firmware-GCS is also widely used, and you are free to try it as you wish. Students are not expected to write low-level drone control code since this complexity is beyond the undergraduate level (given the time available for the capstone). This is why the PX4 open-source firmware has been and is still being actively developed by thousands of outstanding engineers worldwide. We hope that your work in this course will also be able to contribute to the open-source community!
+This guide will help you get started with the core steps of assembling the hardware and configuring the basic software of the drone. PX4 is the recommended open-source firmware for the CubePilot's Orange Cube+ flight controller. The Ardupilot firmware-GCS is also widely used, and you are free to try it as you wish. Students are not expected to write low-level drone control code since this complexity is beyond the undergraduate level (given the time available for the capstone). This is why the PX4 open-source firmware has been and is still being actively developed by thousands of outstanding engineers worldwide. We hope that your work in this course will also be able to contribute to the open-source community!
 
 There are three major modules that need configuration and setup:
 1. The hardware setup as outlined in this page.
@@ -19,36 +19,36 @@ For this course, the **main reference is the [PX4 Autopilot official documentati
 
 ## Hardware Setup
 
-You may want to start by assembling your [frame](https://rotorgeeks.com/download/Minion-Assembly-Manual.pdf) as the first step. The finished frame should look like the one shown in the manual and the example figure below. To align with the default (3D-printed) chassis, the "wide side" of the drone should point forward.
+You may want to start by assembling your [frame](../hardware/frame/minion_assembly_manual.pdf) as the first step. The finished frame should look like the one shown in the manual and in the example figure below. To align with the prefabricated (3D-printed) chassis, the "wide side" of the drone should point forward.
 
 <img src = "../images/frame_example_inverted.png">
 
-Within the kit, you will find that the PDB (power distribution board) is already soldered up with ESCs (Electric Speed Controller) and motors to save you time. Make sure the PDB is lifted up with the spacers so that it does not touch the carbon fiber frame. You are expected to check the correct avionics connections, referring to the **"Basic Assembly"** part of the PX4 document mentioned above.
+Within the kit, you will find that the PDB (power distribution board) is already soldered up with ESCs (Electric Speed Controller) and motors to save you time. Make sure the PDB is elevated with the spacers so that it does *not* touch the carbon fiber frame. You are expected to check the correct avionics connections, referring to the **"Basic Assembly"** part of the PX4 document mentioned above.
 
 - Make sure the autopilot's "POWER" port is connected properly to the PDB (Power Distribution Board).
-- All four ESC connections to the Cube for motor control (refer to the figure below) are connected.
-- The RC (Remote control) receiver connected to the Cube.
-- The TeraRanger EVO 60m is connected to the Cube (with a cable in your kit)
+- All four ESC connections to the Cube are needed for motor control (refer to the figure below).
+- The RC (Remote control) receiver should be connected to the Cube.
+- The TeraRanger EVO 60m should connected to the Cube (with a cable in your kit)
 
-
-It is highly recommended to connect the buzzer that is included in your kit. The buzzer provides valuable acoustic feedback about critical events such as arming, disarming, low battery etc. The buzzer can be connected to the relevant port on the cube:
+It is recommended to connect the buzzer that is included in your kit. The buzzer provides valuable acoustic feedback about critical events such as arming, disarming, low battery, etc. The buzzer can be connected to the relevant port on the cube:
 
 <p align="center">
     <img src="../images/cube_buzzer.jpg" width=400>
 </p>
 
-### ESC interface to flight controller
+The VICON motion capture system will also be available for your use. More details about the VICON marker system and frame-to-frame transformations are available [here](vicon_frame.md).
 
-- With the Orange Cube+ flight controller, the ESCs can be connected to the Cube in two ways. Using the flight management unit (FMU) main pulse-width-modulation (PWM) ports or the auxilary (AUX) ports. Note that the main PWM ports do not support Dshot protocol and might require ESC calibration. The AUX ports support Dshot protocol. The image above shows the PWM main ports ( s + -) and the image below shows the aux ports.
+### ESC Interface to the Flight Controller
+
+- With the Orange Cube+ flight controller, the ESCs can be connected to the Cube in two ways. Using the flight management unit (FMU) main pulse-width-modulation (PWM) ports or the auxilary (AUX) ports. Note that the main PWM ports do not support the Dshot protocol and might require ESC calibration. The AUX ports *do* support the Dshot protocol. The image above shows the PWM main ports ( s + -) and the image below shows the aux ports.
 
 <p align="center">
  <img src="../images/cube_aux_port.png" width = "300">
 </p>
 
-* The numbers 1-6 are included in the picture of the Cube+ to indicate which motor is which.  When using the DShot interface, you will use ports 1-4.  See the diagram below for the motor numbering.
+* The numbers 1-6 are included in the picture of the Cube+ to indicate which motor is which.  When using the DShot interface, you will use ports 1-4.  See the diagram below for motor numbering.
   
 * It is highly recommended to use Dshot protocol for communicating with ESCs. To the connect the ESCs to aux port, you can repurpose the servo connectors by combing the signal (white) wires from two ESCs into one connector and their corresponding ground (black) wires into another connector as is down below.
-
 
 <p align="center">
     <img src = "../images/cube_orientation.png" width = "300">
@@ -56,17 +56,15 @@ It is highly recommended to connect the buzzer that is included in your kit. The
 
 **Important Hints and Advice:**
 
+- The wires that come with the receiver itself are incompatible and not useful to connect the RC receiver to Cube. Please use the 5-pin Picoblade to 3-pin Servo lead wire that is provided in your kit. Be careful not to break the connectors.
 
-- To connect the RC receiver to Cube, the wires that come with the receiver itself are incompatible and not useful. Please use the 5-pin Picoblade to 3-pin Servo lead wire that is provided in your kit. Be careful not to break the connectors.
-
-- It is recommended to learn to manage your team's own document repository and development logs as you proceed in the course. You will often refer to the ESC and motor numbering and rotation direction, as recognized by the flight controller. You should strictly follow the figure below when connecting ESCs to the flight controller, checking motor directions, and installing your propellers.
+- It is recommended to learn to manage your team's own document repository and development informative logs as you proceed in the course. You will often refer to the ESC and motor numbering and rotation direction, as recognized by the flight controller. You should strictly follow the figure below when connecting ESCs to the flight controller, checking motor directions, and installing your propellers.
 
 <p align="center">
 <img src = "../images/quadrotorx.svg" width = "300">
 </p>
 
-
-## Reversing motor direction
+## Reversing Motor Directions
 
 If the motor directions are not as shown in the above figure, they can be changed using Mavlink console. **The following steps are applicable only when using DShot protocol**.
 
@@ -84,7 +82,7 @@ dshot reverse -m 1
 dshot save -m 1
 ```
 
-The above set of commands reverse the direction for motor #1. Similar procedure can be followed to reverse any of the other three motors.
+The above set of commands reverse the direction for Motor #1. Similar procedure can be followed to reverse any of the other three motors.
 
 In the event of accidental change of motor direction, normal direction can be restored as follows:
 ```
@@ -103,9 +101,11 @@ In practice, the correct avionic connections will not fully ensure that the moto
 </p>
 
 ## Firmware
-The autopilot firmware should already be installed on your Cube+ flight controller. We will be using PX4-Autopilot firmware version v1.14.#. **Please do not install a different firmware as compatibility of firmware-specific parameters is not assured**. The firmware version can be verified using QGroundControl under "Vehicle Setup/Summary".
 
-## Setup 
+The autopilot firmware should already be installed on your Cube+ flight controller. We will be using PX4-Autopilot firmware version v1.14.#. **Please do not install different firmware as compatibility of firmware-specific parameters is not assured**. The firmware version can be verified using QGroundControl under "Vehicle Setup/Summary".
+
+## Setup
+
 First, open QGC and click the logo on the top left to enter the vehicle setup page. Make sure the airframe is selected as **"Generic Quadcopter"**. Every time you plug in the flight controller using the micro USB cable, QGC should auto-detect it and connect automatically (it might require multiple attempts in some cases).
 
 If you go to vehicle setup, you will see a list of items to do on the left of the screen. Please check in sequence and configure everything accordingly. The key settings are:
@@ -122,9 +122,10 @@ The Cube is sensitive to vibrations and hence some PID tuning might be required.
 
 ## Radio Setup
 
-As introduced above, radio setup and flight modes need more work. It may also take some time for you to learn how to use the Taranis Remote Control Transmitter (that will be referred to as "Taranis" in the following sections) since it provides remarkable flexibility and is more advanced than the toy-level remote controllers you find with many drones!
+Radio setup and flight modes setup require some additional steps. It will also take some time for you to learn how to use the Taranis Remote Control Transmitter (that will be referred to as "Taranis" in the following sections) since it provides remarkable flexibility and is more advanced than the toy-level remote controllers you find with many drones!
 
 Before binding the Taranis to the receiver, you need to first check the RF module firmware version on the Taranis. On the main screen, long press the [MENU] button, and you will enter the general setting menu for the entire Taranis. Short press the [PAGE] button multiple times to go to page 7, and you can check the [Modules/RX Version].
+
 If your internal RF module is active (by default, the original antenna), you should see the module name ISRM-M. If you see the version is ISRM version 1.1.3 FCC it will *not* work with the ARCHER R4 receiver provided to you. If it is 2.1.0 FCC or higher, then the receiver and transmitter are tested to work together if you follow the register/binding procedures correctly.
 
 #### Binding Taranis transmitter with receiver
@@ -174,7 +175,6 @@ The message "Waiting for RX" should pop up on the LCD panel.
 
 8. Turn on your receiver. The GREEN LED will flash, indicating it is ready to bind and the LCD panel should display the reciever, click enter to confirm. The message **Bind successful** should now be displayed on the transmitter panel.
 
-
 Once the receiver is bound and has a constant green LED light, you should then check in the "Radio" tab of GCS if you can see the channel inputs. If the receiver is stuck in the reg mode, contact your TA.
 
 Controls on the Taranis are generally mapped to the "American Hand" as shown in the figure below. If you would like to control your drone in another fashion, please notify the TAs and the professor. Remember to perform calibration when you first set up and ensure that the channel mappings are correct (for example, you do not want the moving throttle on the RC to appear to be pitch in the flight controller!). If the mapping is incorrect, you can change the channel setting in Taranis.
@@ -201,7 +201,8 @@ To switch the flight mode, you must first set up the Taranis to map between the 
 
 Once this is done, go back to QGC; you can simply select among channels to map them to the functions accordingly. If your RC connection is active, you will be able to see the function name highlighted when you flip the switches. 
 
-## Autopilot configuration
+## Autopilot Configuration
+
 After sensor calibration, flight mode setup, please configure the autopilot by following the procedure outlined in [OrangeCubePlus setup](../hardware/orange_cube_plus.md)
 
 ## Final Checks
@@ -228,5 +229,6 @@ Finally and most importantly, we cannot emphasize the importance of **the [safet
 
 If you have more questions, feel free to consult Google, post on the discussion boards, or ask the TAs/professor. You will have a fairly long time for this task. Thus, try to avoid squeezing everything right up to the deadline, since there is a considerable amount of information to digest. If you finish early, there are a lot of other tasks ahead of you to **continue to look into**, such as configuring your Jetson Nano, modifying/redesigning/printing the chassis, learning to perform a simple hover, using the Vicon system, and using the MAVLink API(MAVSDK/MAVROS) to control the Pixhawk with Jetson Nano. The deeper you understand each topic, the more you can do with this drone platform!
 
-## Attempting first manual flight
-When attempting your first manual flight, increase the throttle gently while keeping an eye on vibrations and oscillations. If the quadrotor begins to vibrate or oscillate on the ground as the throttle is increased, it is a sign of poor tuning and/or loose components. Disarm the drone and check if everything is fastened properly and the parameters are set correctly. If the vibrations persist, you may need to perform additional tuning.  
+## Attempting You First Manual Flight
+
+When attempting your first manual flight, increase the throttle gently while keeping an eye on vibrations and oscillations. If the quadrotor begins to vibrate or oscillate on the ground as the throttle is increased, it is a sign of poor tuning and/or loose components. Disarm the drone and check if everything is fastened properly and the parameters are set correctly. If the vibrations persist, you may need to perform additional tuning.

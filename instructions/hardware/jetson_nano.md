@@ -3,6 +3,7 @@
 The NVIDIA Jetson Nano is a mini computer widely used amongst robotics enthusiasts. In this course, we will use the Jetson Nano as the computing unit for your drone, to complete a set of autonomous flight challenges. Before beginning, you should take a look at the official [NVIDIA Instructions](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit) that explain how to set up your device.
 
 The provided Jetson Nano computers should come preinstalled with Ubuntu 20.04 operating system. If this is not the case, please let the TA staff know.
+
 <!-- NVIDIA provides an [SD card image](https://developer.nvidia.com/jetson-nano-sd-card-image) that contains a custom version of Ubuntu 18 for your Jetson. We also provide a modified version of the image that comes with a set of pre-installed packages for easier setup.
 
 To use the pre-configured image, first download the zip file [here](https://drive.google.com/file/d/1c-AUyDF2ZgA6t0d_pnyBmTgDt-NZ41I6/view?usp=share_link) and unzip it on your Ubuntu host machine. Note that you will need at least 64 GB of free disk space to store the unzipped image file. Next, connect the provided microSD card via a reader to your host computer and open the **Disks** app. Select the SD card from the drive list on the left and then use the **Restore Disk Image...** option in the menu to flash the disk image to the microSD, as shown in the figure below. The process will take about 20 minutes.
@@ -67,7 +68,7 @@ sudo udevadm control --reload-rules && udevadm trigger
 
 Reboot the jetson nano and reconnect the realsense camera and the above issues should go away.
 
-# Communication Between the Jetson Nano and the flight controller
+# Communication Between the Jetson Nano and the Flight Controller
 
 Setting up communication between the Jetson Nano in the flight controller requires two steps: first, wiring the two devices together, and second, configuring the appropriate communications parameters.
 
@@ -79,7 +80,6 @@ The Cube's **Telem 2** port can be connected to Jetson Nano's USB ports using th
 <img src="../images/telem2_usb_uart2.jpg" width="300">
 <img src="../images/telem2_usb_uart3.jpg" width="300">
 </p>
-
 
 <p align="center">
 <img src="../images/telem2_usb_uart1.jpg" width="300">
@@ -141,23 +141,23 @@ First, you need to connect your Jetson to our router. The SSID is `TP_LINK_ROB49
 
 <!-- - `export ROS_MASTER_URI=http://10.42.0.100:11311`
 - `export ROS_IP=*YOUR_IP*` -->
--  `ros2 topic echo /vicon/ROB498_Drone/ROB498_Drone`
+-  `ros2 topic echo /Vicon/ROB498_Drone/ROB498_Drone`
  
  The Vicon poses will published as [PoseStamped](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseStamped.html) messages as well as in the `/tf` topic. If you do not see any messages being printed, reach out to your TA. Note that you must run the first two `export` commands in the terminal every time you want to launch a ROS node. 
 
-## Interfacing with TA computer 
+## Interfacing with the TA Computer 
 
-In order to interface with the TA computer (this is required for Vicon as well as running each of the challenges), you must set your ROS_DOMAIN_ID variable. This will ensure that other teams' nodes do not interfere with your flight. Set the ID to your team number to avoid collisions. You can add it to your .bashrc file to avoid needing to repeat the process each time. Specifcally, 
+In order to interface with the TA computer (which is required for Vicon as well as running each of the challenges), you must set your ROS_DOMAIN_ID variable. This will ensure that other teams' nodes do not interfere with your flight. Set the ID to your team number to avoid collisions. You can add it to your .bashrc file to avoid needing to repeat the process each time. Specifcally, 
 ```
 echo 'export ROS_DOMAIN_ID=<TEAM_NUMBER>' >> ~/.bashrc 
 ```
 
-## Use Vicon motion capture for Pose Estimation
+## Using Vicon for Pose Estimation
 
 Now the two devices are ready to talk to each other! To test the comms, we can run the following commands on Jetson:
 
-The general procedure, when using Vicon  is as follows:
-1. The pose of the quadrotor will be published on a ROS2 topic `/vicon/ROB498_Drone/ROB498_Drone`.
+The general procedure, when using Vicon is as follows:
+1. The pose of the quadrotor will be published on a ROS2 topic `/Vicon/ROB498_Drone/ROB498_Drone`.
 
 2. In a terminal, launch MAVROS by running `ros2 launch mavros px4.launch fcu_url:=/dev/ttyUSB0:921600`. Alternatively, a launch file with the necessary parameters is provided here: [link](../../resources/code/ros2_ws/src/px4_autonomy_modules/launch/mavros.launch.py).
 
@@ -165,9 +165,9 @@ The general procedure, when using Vicon  is as follows:
 
 <!-- - MAVROS by default publishes information at a very low rate, or not publishes them at all. We can enable data streams, and set the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 Hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry.  -->
 
-**IMPORTANT:** The pose reported by the motion capture system depends on the markers mounted on the quadrotor. It is IMPERATIVE that the motion capture estimates be **aligned** with quadrotor body frame: If the quadrotor is manually moved forward, the pose reported by motion capture system should change accordingly (`translation.x` field of `/vicon/ROB498_Drone/ROB498_Drone` should increase). Similarly roll, pitch, and yaw angle changes need to be verified by manually moving the quadrotor.
+**IMPORTANT:** The pose reported by the motion capture system depends on the markers mounted on the quadrotor. It is IMPERATIVE that the motion capture estimates be **aligned** with quadrotor body frame: If the quadrotor is manually moved forward, the pose reported by motion capture system should change accordingly (`translation.x` field of `/Vicon/ROB498_Drone/ROB498_Drone` should increase). Similarly roll, pitch, and yaw angle changes need to be verified by manually moving the quadrotor.
 
-## Use Realsense T265 Tracking Camera For Pose Estimation
+## Use Realsense T265 Tracking Camera for Pose Estimation
 
 In the absence of GPS, the Cube uses the internal IMU to estimate its pose, which will drift over time. Fortunately, the Realsense T265 camera can use both the IMU and viusal feature to provide more stable pose estimations. To use the Realsense VIO output
 1. Launch the realsense camera driver:
@@ -185,7 +185,6 @@ Follow a procedure similar to the motion capture setup to redirect the VIO outpu
 **IMPORTANT:** The reference frame for VIO output depends on several factors including (i) where the system (specifically the camera driver) was powered on, and more importantly (ii) the orientation of camera relative to the quadrotor body frame. It is IMPERATIVE that the VIO output be **aligned** with quadrotor body frame: If the quadrotor is manually moved forward, the VIO output should change accordingly (`pose.position.x` field of `\camera\pose\sample` should increase). Similarly roll, pitch, and yaw angle changes need to be verified by manually moving the quadrotor. If the VIO estimates do not align with its motion, then the quadrotor cannot maintain its position or attitude and can lead to unstable flight. 
 
 <!-- The Auterion VIO package is installed at `~/thirdparty/vio_ws`. Source this ROS workspace and run `roslaunch px4_realsense_bridge bridge_mavros.launch` to launch the bridge. -->
-
 
 # Wifi
 
@@ -205,4 +204,3 @@ If the Wifi adapter is not working, this section provides instruction on how to 
 NVIDIA currently supports Ubuntu 18.04 on the Jetson Nano. The compatible ROS version is Melodic Morenia. Both the OS and the ROS version are somewhat dated (as of 2023).
 
 Thankfully, EngSci Robo Jonathan Spraggett has come to the rescue by providing an updated Docker container (image) that is set up to run Ubuntu 20.04 and ROS Noetic Ninjemys! The container supports access to the Jetson CUDA cores, too! -->
-

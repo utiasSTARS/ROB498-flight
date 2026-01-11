@@ -47,4 +47,4 @@ You can view Evo measurements over the `mavros/distance_sensor/hrlv_ez4_pub` top
 
 Finally, it should be noted that Evo range measurements can be incorporated directly into the Cube's EKF2 module for position (height) estimation. THIS SHOULD ONLY BE DONE DURING OPERATION OVER FLAT SURFACES, AS CHANGES IN FLOOR HEIGHT/TEXTURE CAN CAUSE UNPREDICTABLE MOVEMENT.
 
-To enable this function, you must open QGroundControl and change the `EKF2_HGT_MODE` parameter to "Range sensor", and configure multiple `EKF2_RNG_ ...` parameters for position/orientation of the Evo with respect to the Cube's velocity sensitivity, etc. 
+To enable this function, you must open QGroundControl and change the `EKF2_HGT_MODE` parameter to "Range sensor", and configure multiple `EKF2_RNG_ ...` parameters for position/orientation of the Evo with respect to the Cube's velocity sensitivity, etc.
