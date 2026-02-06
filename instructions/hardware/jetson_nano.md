@@ -137,20 +137,19 @@ Next, we need to give persmissions to the user to talk to the port:
 Vicon is a high precision tracking system that can provide real-time pose estimate to the drone during flight. We have step up the infrastructure so your Jetson Nano can access data from the Vicon sysetm using onboard Wifi in the format of ROS messages. This section provides the instruction on how to configure your Jetson in order to join the ROS network.
 
 First, you need to connect your Jetson to our router. The SSID is `TP_LINK_ROB498` and the password is `rob498drones`. Once connected, you should set up static IP for the Jetson. To do so, open **Settings**, and navigate to the **Wi-Fi** tab. Click on the arrow beside the connection to open the network interface dialog box. Go to the **IPv4** tab, and change the **IPv4 Method** to **Manual**. In the **Address** box, enter **10.42.0.1xx** where *1xx* should be *100* + *your team number*. For example, if you were team 12 then your IP should be *10.42.0.112*. Next, in the **Netmask** box, enter **24**. Save and close the window. The setting will be applied after you reconnect to the network. Verify that your IP address has been updated using the **ifconfig** command.
-  Now you should be able to subscribe to the Vicon pose messages using ROS. To verify, open a new terminal window and run the following command:
+
+In order to interface with the TA computer (which is required for Vicon as well as running each of the challenges), you must set your ROS_DOMAIN_ID variable. This will ensure that other teams' nodes do not interfere with your flight. Set the ID to your team number to avoid collisions. You can add it to your .bashrc file to avoid needing to repeat the process each time. Specifcally, 
+```
+echo 'export ROS_DOMAIN_ID=<TEAM_NUMBER>' >> ~/.bashrc
+```
+
+In order for the change to take effect, you can either close and re-open your terminal or un the command `source ~/.bashrc`. Now you should be able to subscribe to the Vicon pose messages using ROS. To verify, open a new terminal window and run the following command:
 
 <!-- - `export ROS_MASTER_URI=http://10.42.0.100:11311`
 - `export ROS_IP=*YOUR_IP*` -->
 -  `ros2 topic echo /vicon/ROB498_Drone/ROB498_Drone`
  
- The Vicon poses will published as [PoseStamped](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseStamped.html) messages as well as in the `/tf` topic. If you do not see any messages being printed, reach out to your TA. Note that you must run the first two `export` commands in the terminal every time you want to launch a ROS node. 
-
-## Interfacing with the TA Computer 
-
-In order to interface with the TA computer (which is required for Vicon as well as running each of the challenges), you must set your ROS_DOMAIN_ID variable. This will ensure that other teams' nodes do not interfere with your flight. Set the ID to your team number to avoid collisions. You can add it to your .bashrc file to avoid needing to repeat the process each time. Specifcally, 
-```
-echo 'export ROS_DOMAIN_ID=<TEAM_NUMBER>' >> ~/.bashrc 
-```
+The Vicon poses will published as [PoseStamped](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseStamped.html) messages as well as in the `/tf` topic. If you do not see any messages being printed, reach out to your TA, as the TA computer may be publishing the topic to a different team's `ROS_DOMAIN_ID`.
 
 ## Using Vicon for Pose Estimation
 
