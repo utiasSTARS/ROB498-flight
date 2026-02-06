@@ -141,7 +141,7 @@ First, you need to connect your Jetson to our router. The SSID is `TP_LINK_ROB49
 
 <!-- - `export ROS_MASTER_URI=http://10.42.0.100:11311`
 - `export ROS_IP=*YOUR_IP*` -->
--  `ros2 topic echo /Vicon/ROB498_Drone/ROB498_Drone`
+-  `ros2 topic echo /vicon/ROB498_Drone/ROB498_Drone`
  
  The Vicon poses will published as [PoseStamped](http://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/PoseStamped.html) messages as well as in the `/tf` topic. If you do not see any messages being printed, reach out to your TA. Note that you must run the first two `export` commands in the terminal every time you want to launch a ROS node. 
 
@@ -157,7 +157,7 @@ echo 'export ROS_DOMAIN_ID=<TEAM_NUMBER>' >> ~/.bashrc
 Now the two devices are ready to talk to each other! To test the comms, we can run the following commands on Jetson:
 
 The general procedure, when using Vicon is as follows:
-1. The pose of the quadrotor will be published on a ROS2 topic `/Vicon/ROB498_Drone/ROB498_Drone`.
+1. The pose of the quadrotor will be published on a ROS2 topic `/vicon/ROB498_Drone/ROB498_Drone`.
 
 2. In a terminal, launch MAVROS by running `ros2 launch mavros px4.launch fcu_url:=/dev/ttyUSB0:921600`. Alternatively, a launch file with the necessary parameters is provided here: [link](../../resources/code/ros2_ws/src/px4_autonomy_modules/launch/mavros.launch.py).
 
@@ -165,7 +165,7 @@ The general procedure, when using Vicon is as follows:
 
 <!-- - MAVROS by default publishes information at a very low rate, or not publishes them at all. We can enable data streams, and set the publish rate by running `rosservice call /mavros/set_message_interval TOPIC_ID DESIRED_RATE` in the third terminal. Topic IDs can be found [here](https://mavlink.io/en/messages/common.html). For example, if we want to publish odometry (pose) at 100 Hz then we can run `rosservice call /mavros/set_message_interval 331 100` where 331 is the ID for odometry.  -->
 
-**IMPORTANT:** The pose reported by the motion capture system depends on the markers mounted on the quadrotor. It is IMPERATIVE that the motion capture estimates be **aligned** with quadrotor body frame: If the quadrotor is manually moved forward, the pose reported by motion capture system should change accordingly (`translation.x` field of `/Vicon/ROB498_Drone/ROB498_Drone` should increase). Similarly roll, pitch, and yaw angle changes need to be verified by manually moving the quadrotor.
+**IMPORTANT:** The pose reported by the motion capture system depends on the markers mounted on the quadrotor. It is IMPERATIVE that the motion capture estimates be **aligned** with quadrotor body frame: If the quadrotor is manually moved forward, the pose reported by motion capture system should change accordingly (`translation.x` field of `/vicon/ROB498_Drone/ROB498_Drone` should increase). Similarly roll, pitch, and yaw angle changes need to be verified by manually moving the quadrotor.
 
 ## Use Realsense T265 Tracking Camera for Pose Estimation
 
