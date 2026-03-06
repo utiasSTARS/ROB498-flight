@@ -9,4 +9,8 @@ This repository contains flight-related code and documentation for the ROB498 ca
   - [A guide to assembly and setup (first steps)](/instructions/guides/getting_started_setup.md) of the drone frame, power board, motors, and Orange Cube+ (Pixhawk 4).
   - [Various hardware overview documents](instructions/hardware/) for the Orange Cube+ (Pixhawk 4), Jetson Nano, TeraRanger Evo, RealSense T265, and Sony camera.
 
+### Debugging tips
+
+See the [DEBUG](DEBUG.md) page for more help debugging.
+
 &copy; 2023-2026 University of Toronto
